@@ -9,7 +9,7 @@ public class Entity {
 
     }
 
-    private void heal(int amount) {
+    private void heal(Food food) {
 
     }
 }

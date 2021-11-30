@@ -1,6 +1,6 @@
 package com.floppa;
 
-public class Floppa {
+public class Floppa extends Entity{
     private int age;
     //Epic Animal
 }

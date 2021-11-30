@@ -2,7 +2,7 @@ package com.floppa;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends  Entity {
     private ArrayList<WorldObject> inventory = new ArrayList<WorldObject>();
 
     void grabWorldObject() {
