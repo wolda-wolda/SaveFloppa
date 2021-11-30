@@ -9,8 +9,12 @@ public class Room {
     private Info info;
     private HashMap<String, Room> rooms;
 
+    public Room(Info info) {
+        this.info = info;
+    }
+
     void addRoom(String key, Room room) {
-        rooms.put(key, room);
+        this.rooms.put(key, room);
     }
 
     HashMap<String, Room> getRooms() {
