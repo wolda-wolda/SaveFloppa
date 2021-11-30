@@ -7,7 +7,7 @@ public class Room {
     private ArrayList<WorldObject> objects;
     private ArrayList<Room> exit;
     private Info info;
-    private HashMap<String, Room> rooms;
+    private HashMap<String, Room> rooms = new HashMap<>();
 
     public Room(Info info) {
         this.info = info;
