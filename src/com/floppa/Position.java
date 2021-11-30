@@ -16,4 +16,8 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    public Position setPos(int x, int y) {
+        return new Position(x, y);
+    }
 }
