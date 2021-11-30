@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player extends  Entity {
     private ArrayList<WorldObject> inventory = new ArrayList<WorldObject>();
+    private Position pos;
 
     void grabWorldObject() {
         //Add Item to Inventory
@@ -11,5 +12,9 @@ public class Player extends  Entity {
 
     void depositWorldObject() {
         //Drop or put an Item somewhere
+    }
+
+    Position getPos() {
+        return pos;
     }
 }
