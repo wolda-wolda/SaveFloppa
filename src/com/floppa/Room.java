@@ -7,5 +7,5 @@ public class Room {
     private ArrayList<WorldObject> objects;
     private ArrayList<Room> exit;
     private Info info;
-    private HashMap rooms;
+    private HashMap<Room, Room> rooms;
 }
