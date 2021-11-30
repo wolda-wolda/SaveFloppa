@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
-    private ArrayList<WorldObject> objects;
+    private ArrayList<WorldObject> objects = new ArrayList<>();
     private ArrayList<Room> exit;
     private Info info;
     private HashMap<String, Room> rooms = new HashMap<>();
