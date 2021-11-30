@@ -13,7 +13,7 @@ public class Room {
         rooms.put(key, room);
     }
 
-    HashMap getRooms() {
+    HashMap<String, Room> getRooms() {
         return rooms;
     }
 }
