@@ -9,11 +9,15 @@ public class Room {
     private Info info;
     private HashMap<String, Room> rooms;
 
-    void addRoom(String key, Room room) {
-        rooms.put(key, room);
+    public Room(Info info) {
+        this.info = info;
     }
 
-    HashMap getRooms() {
+    void addRoom(String key, Room room) {
+        this.rooms.put(key, room);
+    }
+
+    HashMap<String, Room> getRooms() {
         return rooms;
     }
 }
