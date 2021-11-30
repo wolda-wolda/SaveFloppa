@@ -8,4 +8,8 @@ public class Info {
         this.name = name;
         this.description = description;
     }
+    
+    public void printInfo() {
+        System.out.println("Name: " + this.name + " Beschreibung: " + this.description);
+    }
 }
