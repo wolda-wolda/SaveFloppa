@@ -4,20 +4,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
-    private ArrayList<WorldObject> objects;
+    private ArrayList<WorldObject> objects = new ArrayList<>();
     private ArrayList<Room> exit;
     private Info info;
     private HashMap<String, Room> rooms = new HashMap<>();
+    private Position max = new Position(5, 5);
 
     public Room(Info info) {
         this.info = info;
     }
 
-    void addRoom(String key, Room room) {
+    public void addRoom(String key, Room room) {
         this.rooms.put(key, room);
     }
 
-    HashMap<String, Room> getRooms() {
+    public HashMap<String, Room> getRooms() {
         return rooms;
+    }
+
+    public int getMaxX() {
+        return max.getX();
+    }
+
+    public int getMaxY() {
+        return max.getX();
     }
 }
