@@ -1,4 +1,6 @@
-package com.floppa;
+package com.floppa.Items;
+
+import com.floppa.Info;
 
 public abstract class Item {
     Info info;

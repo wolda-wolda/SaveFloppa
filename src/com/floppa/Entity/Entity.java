@@ -1,4 +1,7 @@
-package com.floppa;
+package com.floppa.Entity;
+
+import com.floppa.Items.Food;
+import com.floppa.Info;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

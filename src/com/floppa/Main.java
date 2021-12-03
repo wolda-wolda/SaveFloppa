@@ -1,5 +1,9 @@
 package com.floppa;
 
+import com.floppa.Entity.Player;
+import com.floppa.Items.Food;
+import com.floppa.Room.Room;
+
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +20,7 @@ public class Main {
             System.out.println("Input: ");
             char ch = scanner.next().charAt(0);
             player1.move(ch);
-            System.out.println("Position des aktuellen Spielers: " + player1.getPos());
+            System.out.println("com.floppa.Position.Position des aktuellen Spielers: " + player1.getPos());
         }
     }
 

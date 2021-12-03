@@ -1,4 +1,8 @@
-package com.floppa;
+package com.floppa.Room;
+
+import com.floppa.Info;
+import com.floppa.Position.Position;
+import com.floppa.WorldObject.WorldObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

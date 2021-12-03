@@ -1,4 +1,7 @@
-package com.floppa;
+package com.floppa.Items;
+
+import com.floppa.Info;
+import com.floppa.Items.Item;
 
 public class Food extends Item {
     private int strength;

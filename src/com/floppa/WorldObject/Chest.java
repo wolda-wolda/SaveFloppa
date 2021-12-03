@@ -1,4 +1,7 @@
-package com.floppa;
+package com.floppa.WorldObject;
+
+import com.floppa.Interaction;
+import com.floppa.Items.Item;
 
 import java.util.ArrayList;
 
