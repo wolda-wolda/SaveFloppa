@@ -11,7 +11,7 @@ public class Main {
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
 
         addStartingArea(room);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i == i; i++) {
             char ch = scanner.next().charAt(0);
             player1.move(ch);
             System.out.println("Position des aktuellen Spielers: " + player1.getPos());
@@ -19,8 +19,8 @@ public class Main {
     }
 
     public static void addStartingArea(Room room) {
-        room.addRoom("east", new Room(new Info("EasternRoom", "IDK")));
-        room.addRoom("west", new Room(new Info("WesternRoom", "IDK")));
-        room.addRoom("north", new Room(new Info("NorthernRoom", "IDK")));
+        room.addRoom(new Position(5, 3), new Room(new Info("EasternRoom", "IDK")));
+        room.addRoom(new Position(0, 1), new Room(new Info("WesternRoom", "IDK")));
+        room.addRoom(new Position(3, 5), new Room(new Info("NorthernRoom", "IDK")));
     }
 }
