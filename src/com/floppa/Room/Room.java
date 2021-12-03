@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class Room {
     private ArrayList<WorldObject> objects = new ArrayList<>();
-    private ArrayList<Room> exit;
     private Info info;
     private HashMap<Position, Room> rooms = new HashMap<>();
     private Position max = new Position(5, 5);
