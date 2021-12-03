@@ -1,4 +1,4 @@
-package com.floppa;
+package com.floppa.Position;
 
 public class Position {
     private int x;
