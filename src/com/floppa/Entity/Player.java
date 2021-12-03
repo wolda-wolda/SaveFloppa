@@ -39,10 +39,14 @@ public class Player extends Entity {
     public void applyPos(Position pos) {
         if ((pos.getX() < currentRoom.getMaxX() && pos.getY() < currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
             this.pos = pos;
+            if (currentRoom.hasDoorAt(pos)) {
+                currentRoom = currentRoom.getRooms().get(pos);
+                System.out.println("Entered room at " + pos);
+                this.pos = new Position(0, 0);
+            }
         } else {
             System.out.println("Wand");
         }
-
     }
 
     public void move(char ch) {

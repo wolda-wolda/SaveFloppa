@@ -11,18 +11,18 @@ public class Room {
     private ArrayList<WorldObject> objects = new ArrayList<>();
     private ArrayList<Room> exit;
     private Info info;
-    private HashMap<String, Room> rooms = new HashMap<>();
+    private HashMap<Position, Room> rooms = new HashMap<>();
     private Position max = new Position(5, 5);
 
     public Room(Info info) {
         this.info = info;
     }
 
-    public void addRoom(String key, Room room) {
+    public void addRoom(Position key, Room room) {
         this.rooms.put(key, room);
     }
 
-    public HashMap<String, Room> getRooms() {
+    public HashMap<Position, Room> getRooms() {
         return rooms;
     }
 
@@ -32,5 +32,14 @@ public class Room {
 
     public int getMaxY() {
         return max.getX();
+    }
+
+    public boolean hasDoorAt(Position pos) {
+        for (Position x : rooms.keySet()) {
+            if (pos.getX() == x.getX() && pos.getY() == pos.getY()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
