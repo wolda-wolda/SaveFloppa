@@ -9,9 +9,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Room room = new Room(new Info("StartRoom", "IDK"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
+        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark")));
 
         addStartingArea(room);
         for (int i = 0; i < 5; i++) {
+            System.out.println("Input: ");
             char ch = scanner.next().charAt(0);
             player1.move(ch);
             System.out.println("Position des aktuellen Spielers: " + player1.getPos());
