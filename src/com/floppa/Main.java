@@ -5,22 +5,26 @@ import com.floppa.Items.Food;
 import com.floppa.Position.Position;
 import com.floppa.Room.Room;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("[ENG] Welcome to Epic Floppa Gaem :D");
-        System.out.println("[RUS] Флоппа Гаэм лол :D");
         Scanner scanner = new Scanner(System.in);
+        String ch = "";
         Room room = new Room(new Info("StartRoom", "IDK"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
         player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10));
 
         addStartingArea(room);
-        for (int i = 0; i == i; i++) {
-            char ch = scanner.next().charAt(0);
+        while (!Objects.equals(ch, "Exit")) {
+            System.out.println("INPUT: ");
+            ch = scanner.next();
             player1.move(ch);
-            System.out.println("Position des aktuellen Spielers: " + player1.getPos());
+            if (!Objects.equals(ch, "Exit")) {
+                System.out.println("Position des aktuellen Spielers: " + player1.getPos());
+            }
         }
     }
 

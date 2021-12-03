@@ -46,7 +46,7 @@ public class Entity {
 
     private void performLevelUp() {
         System.out.println(" #############################");
-        System.out.println(" # Neues Level erreicht " + (++currentLevel) + "! # ");
+        System.out.println(" # Neues Level erreicht " + (++currentLevel) + "!   # ");
         System.out.println(" #############################");
     }
 
