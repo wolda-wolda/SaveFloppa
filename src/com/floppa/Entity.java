@@ -15,7 +15,7 @@ public class Entity {
 
     public Map<Integer, Integer> loadXpPerLevel() {
         Map<Integer, Integer> xpPerLevel = new LinkedHashMap<>();
-        String file = "src\\Config\\LevelingSystem.txt";
+        String file = "src/Config/LevelingSystem.txt";
         int level = 1;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
