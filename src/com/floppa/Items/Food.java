@@ -6,9 +6,9 @@ import com.floppa.Items.Item;
 public class Food extends Item {
     private int strength;
 
-    public Food(Info info) {
+    public Food(Info info, int strength) {
         super(info);
-        this.strength = 100;
+        this.strength = strength;
     }
 
     public int getStrength() {

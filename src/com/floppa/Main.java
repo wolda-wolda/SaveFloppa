@@ -13,7 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Room room = new Room(new Info("StartRoom", "IDK"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
-        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark")));
+        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10));
 
         addStartingArea(room);
         for (int i = 0; i < 5; i++) {
