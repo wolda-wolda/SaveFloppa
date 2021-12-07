@@ -12,10 +12,11 @@ public class Player extends Entity {
     private Pos pos;
     private Info info;
     private Room currentRoom;
+    private Pos max;
 
     public Player(Info info, Room room) {
         this.info = info;
-        this.pos = new Pos(3, 3);
+        this.pos = new Pos(0, 0);
         this.currentRoom = room;
     }
 
@@ -27,19 +28,21 @@ public class Player extends Entity {
         //Drop or put an Item somewhere
     }
 
+    public void setMax(Pos max) {
+        this.max = max;
+    }
 
     public String getPos() {
         return this.pos.getX() + "|" + this.pos.getY();
     }
 
     public void applyPos(Pos pos) {
-        if ((pos.getX() <= currentRoom.getMaxX() && pos.getY() <= currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
+        if ((pos.getX() < currentRoom.getMaxX() && pos.getY() < currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
             this.pos = pos;
             if (currentRoom.hasDoorAt(pos)) {
-                String strPos = currentRoom.keyToString(pos);
-                this.currentRoom = currentRoom.getRooms().get(strPos);
-                System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
-                this.pos = new Pos(3, 3);
+                currentRoom = currentRoom.getRooms().get(pos);
+                System.out.println("Entered room at " + pos);
+                this.pos = new Pos(0, 0);
             }
         } else {
             System.out.println("Wand");
