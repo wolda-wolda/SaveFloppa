@@ -15,7 +15,10 @@ public class Main {
         String ch = "";
         Room room = new Room(new Info("StartRoom", "IDK"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
-        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10));
+        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10,1));
+        player1.heal(new Food(new Info("Birne", "Dein HP wird steigen"),1,101));
+        player1.heal(new Food(new Info("Apfel", "Dein HP wird steigen"),1,2));
+
 
         addStartingArea(room);
         while (!Objects.equals(ch, "Exit")) {
