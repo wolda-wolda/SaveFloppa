@@ -30,7 +30,7 @@ public class Main {
 
     public static void addStartingArea(Room room) {
         room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
-        room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK")));
+        room.addRoom(new Pos(0, 2), new Room(new Info("WesternRoom", "IDK")));
         room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
     }
 }
