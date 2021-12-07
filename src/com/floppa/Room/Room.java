@@ -41,4 +41,9 @@ public class Room {
         }
         return false;
     }
+
+    public void fillRoom(ArrayList<WorldObject> objects) {
+        this.objects = objects;
+    }
+
 }
