@@ -12,6 +12,7 @@ public class Player extends Entity {
     private Pos pos;
     private Info info;
     private Room currentRoom;
+    private Position max;
 
     public Player(Info info, Room room) {
         this.info = info;
@@ -27,6 +28,9 @@ public class Player extends Entity {
         //Drop or put an Item somewhere
     }
 
+    public void setMax(Position max) {
+        this.max = max;
+    }
 
     public String getPos() {
         return this.pos.getX() + "|" + this.pos.getY();
