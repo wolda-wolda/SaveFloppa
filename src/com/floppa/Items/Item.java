@@ -14,4 +14,12 @@ public abstract class Item {
     public String getInfo(){
         return this.info.getName();
     }
+
+    public void incrementCount(){
+        this.count++;
+    }
+
+    public void decrementCount() {
+        this.count--;
+    }
 }
