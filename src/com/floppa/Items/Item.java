@@ -10,4 +10,8 @@ public abstract class Item {
         this.info = info;
         count++;
     }
+
+    public String getInfo(){
+        return this.info.getName();
+    }
 }

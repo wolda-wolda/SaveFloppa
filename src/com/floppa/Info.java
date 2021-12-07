@@ -12,4 +12,8 @@ public class Info {
     public void printInfo() {
         System.out.println("Name: " + this.name + " Beschreibung: " + this.description);
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
