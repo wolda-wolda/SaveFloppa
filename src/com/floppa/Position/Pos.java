@@ -1,10 +1,10 @@
 package com.floppa.Position;
 
-public class Position {
+public class Pos {
     private int x;
     private int y;
 
-    public Position(int x, int y) {
+    public Pos(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -17,7 +17,7 @@ public class Position {
         return y;
     }
 
-    public Position setPos(int x, int y) {
-        return new Position(x, y);
+    public Pos setPos(int x, int y) {
+        return new Pos(x, y);
     }
 }

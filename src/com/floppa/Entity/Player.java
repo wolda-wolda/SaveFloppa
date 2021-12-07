@@ -1,7 +1,7 @@
 package com.floppa.Entity;
 
 import com.floppa.Info;
-import com.floppa.Position.Position;
+import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
 import com.floppa.WorldObject.WorldObject;
 
@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
     private ArrayList<WorldObject> inventory = new ArrayList<>();
-    private Position pos;
+    private Pos pos;
     private Info info;
     private Room currentRoom;
 
     public Player(Info info, Room room) {
         this.info = info;
-        this.pos = new Position(0, 0);
+        this.pos = new Pos(3, 3);
         this.currentRoom = room;
     }
 
@@ -32,13 +32,14 @@ public class Player extends Entity {
         return this.pos.getX() + "|" + this.pos.getY();
     }
 
-    public void applyPos(Position pos) {
-        if ((pos.getX() < currentRoom.getMaxX() && pos.getY() < currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
+    public void applyPos(Pos pos) {
+        if ((pos.getX() <= currentRoom.getMaxX() && pos.getY() <= currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
             this.pos = pos;
             if (currentRoom.hasDoorAt(pos)) {
-                currentRoom = currentRoom.getRooms().get(pos);
-                System.out.println("Entered room at " + pos);
-                this.pos = new Position(0, 0);
+                String strPos = currentRoom.keyToString(pos);
+                this.currentRoom = currentRoom.getRooms().get(strPos);
+                System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
+                this.pos = new Pos(3, 3);
             }
         } else {
             System.out.println("Wand");
