@@ -8,18 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
-    private ArrayList<WorldObject> objects;
-    private ArrayList<Room> exit;
+    private ArrayList<WorldObject> objects = new ArrayList<>();
     private Info info;
     private HashMap<Pos, Room> rooms = new HashMap<>();
     private Pos max = new Pos(5, 5);
 
     public Room(Info info) {
         this.info = info;
-    }
-
-    public void fillRoom(ArrayList<WorldObject> objects) {
-        this.objects = objects;
     }
 
     public void addRoom(Pos key, Room room) {
@@ -46,4 +41,9 @@ public class Room {
         }
         return false;
     }
+
+    public void fillRoom(ArrayList<WorldObject> objects) {
+        this.objects = objects;
+    }
+
 }
