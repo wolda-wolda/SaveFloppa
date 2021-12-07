@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    ArrayList<Item> items = new ArrayList<>;
+    ArrayList<Item> items = new ArrayList<>();
 
     public Inventory(int size) {
         for (int i = 0; i < size; i++) {
