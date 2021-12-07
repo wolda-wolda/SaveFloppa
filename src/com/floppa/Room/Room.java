@@ -46,7 +46,7 @@ public class Room {
     }
 
     public Pos stringToKey(String pos) {
-        String []tmp = pos.split(",");
+        String[] tmp = pos.split(",");
         return new Pos(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
     }
 
@@ -54,5 +54,9 @@ public class Room {
         String x = String.valueOf(pos.getX());
         String y = String.valueOf(pos.getY());
         return x + "," + y;
+    }
+
+    public void fillRoom(ArrayList<WorldObject> objects) {
+        this.objects = objects;
     }
 }

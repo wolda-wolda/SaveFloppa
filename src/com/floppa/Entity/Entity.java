@@ -51,11 +51,18 @@ public class Entity {
     }
 
     public void levelUp(Food food) {
-        curXP += food.getStrength();
+        this.curXP += food.getStrength();
         checkCurrentXP();
     }
 
-    private void heal(Food food) {
+    public void heal(Food food) {
 
+        if(this.hp < 100){
+            this.hp += food.getHp();
+                if(this.hp > 100){
+                    this.hp = 100;
+                }
+            System.out.println("Erfolgreich " + food.getInfo() + " hat HP von " + this.hp);
+        }
     }
 }
