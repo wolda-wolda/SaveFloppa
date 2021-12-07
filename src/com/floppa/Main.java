@@ -2,7 +2,7 @@ package com.floppa;
 
 import com.floppa.Entity.Player;
 import com.floppa.Items.Food;
-import com.floppa.Position.Position;
+import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
 
 import java.util.Objects;
@@ -29,8 +29,8 @@ public class Main {
     }
 
     public static void addStartingArea(Room room) {
-        room.addRoom(new Position(5, 3), new Room(new Info("EasternRoom", "IDK")));
-        room.addRoom(new Position(0, 1), new Room(new Info("WesternRoom", "IDK")));
-        room.addRoom(new Position(3, 5), new Room(new Info("NorthernRoom", "IDK")));
+        room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
+        room.addRoom(new Pos(0, 1), new Room(new Info("WesternRoom", "IDK")));
+        room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
     }
 }
