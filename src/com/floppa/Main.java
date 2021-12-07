@@ -2,9 +2,13 @@ package com.floppa;
 
 import com.floppa.Entity.Player;
 import com.floppa.Items.Food;
-import com.floppa.Position.Position;
+import com.floppa.Items.Item;
+import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
+import com.floppa.WorldObject.Chest;
+import com.floppa.WorldObject.WorldObject;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -32,8 +36,14 @@ public class Main {
     }
 
     public static void addStartingArea(Room room) {
-        room.addRoom(new Position(5, 3), new Room(new Info("EasternRoom", "IDK")));
-        room.addRoom(new Position(0, 1), new Room(new Info("WesternRoom", "IDK")));
-        room.addRoom(new Position(3, 5), new Room(new Info("NorthernRoom", "IDK")));
+        room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
+        room.addRoom(new Pos(0, 1), new Room(new Info("WesternRoom", "IDK")));
+        room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
+
+        ArrayList<WorldObject> objects = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(new Food(new Info("Apfel", "xdds"), 1, 10));
+        objects.add(new Chest(new Info("Chest", "Chest"), items));
+        room.fillRoom(objects);
     }
 }
