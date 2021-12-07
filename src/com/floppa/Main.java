@@ -8,9 +8,7 @@ import com.floppa.Room.Room;
 import com.floppa.WorldObject.Chest;
 import com.floppa.WorldObject.WorldObject;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +23,7 @@ public class Main {
 
 
         addStartingArea(room);
+        room.printWorldObjects();
         while (!Objects.equals(ch, "Exit")) {
             System.out.println("INPUT: ");
             ch = scanner.next();
@@ -40,10 +39,12 @@ public class Main {
         room.addRoom(new Pos(0, 1), new Room(new Info("WesternRoom", "IDK")));
         room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
 
-        ArrayList<WorldObject> objects = new ArrayList<>();
+        LinkedHashMap<Pos, WorldObject> objects = new LinkedHashMap<>();
         ArrayList<Item> items = new ArrayList<>();
         items.add(new Food(new Info("Apfel", "xdds"), 1, 10));
-        objects.add(new Chest(new Info("Chest", "Chest"), items));
+        objects.put(new Pos(3, 4), new Chest(new Info("Chest", "Chest"), items));
+        objects.put(new Pos(3, 5), new Chest(new Info("Chest2", "Chest2"), items));
+        objects.put(new Pos(1, 1), new WorldObject(new Info("TestObjekt", "Test")));
         room.fillRoom(objects);
     }
 }

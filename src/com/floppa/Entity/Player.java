@@ -41,6 +41,7 @@ public class Player extends Entity {
                 System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
                 this.pos = new Pos(3, 3);
             }
+            currentRoom.hasWorldObjectAt(pos);
         } else {
             System.out.println("Wand");
         }

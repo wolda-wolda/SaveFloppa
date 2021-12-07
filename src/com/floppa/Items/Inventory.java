@@ -1,6 +1,7 @@
 package com.floppa.Items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Inventory {
 
@@ -30,11 +31,10 @@ public class Inventory {
 
     public boolean addItem(Item item){
         for (int i = 0; i < items.size(); i ++){
-            if (items.get(i) == null){
+            if (items.get(i) == null) {
                 setItems(i, item);
                 return true;
-            }
-            else if (items.get(i).getInfo() == item.getInfo()){
+            } else if (Objects.equals(items.get(i).getInfo(), item.getInfo())) {
                 items.get(i).incrementCount();
                 return true;
             }
