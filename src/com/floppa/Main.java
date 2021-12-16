@@ -27,7 +27,7 @@ public class Main {
         while (!Objects.equals(ch, "Exit")) {
             System.out.println("INPUT: ");
             ch = scanner.next();
-            player1.move(ch);
+            player1.move(ch, player1);
             if (!Objects.equals(ch, "Exit")) {
                 System.out.println("Position des aktuellen Spielers: " + player1.getPos());
             }
