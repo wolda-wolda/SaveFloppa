@@ -13,11 +13,13 @@ public class Player extends Entity {
     private Pos pos;
     private Info info;
     private Room currentRoom;
+    private Floppa floppa;
 
-    public Player(Info info, Room room) {
-        this.info = info;
+    public Player(Info info, Room room, Floppa floppa) {
+        super(info);
         this.pos = new Pos(3, 3);
         this.currentRoom = room;
+        this.floppa = floppa;
     }
 
     void grabWorldObject() {
@@ -42,6 +44,12 @@ public class Player extends Entity {
 
                 System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
                 this.pos = new Pos(3, 3);
+                if (this.floppa.isDead()) {
+                    System.out.println("Your Floppa died: GAME OVER");
+                    Menu("Exit", this);
+                } else {
+                    this.floppa.isStarvin();
+                }
             }
             currentRoom.hasWorldObjectAt(pos);
         } else {
@@ -49,13 +57,16 @@ public class Player extends Entity {
         }
     }
 
-    public void move(String ch, Player player1) {
+    public void Menu(String ch, Player player1) {
         switch (ch) {
             case "w" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() + 1));
             case "s" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() - 1));
             case "a" -> this.applyPos(this.pos.setPos(this.pos.getX() - 1, this.pos.getY()));
             case "d" -> this.applyPos(this.pos.setPos(this.pos.getX() + 1, this.pos.getY()));
-            case "Exit" -> System.out.println("Du haßt das Spiel beendet");
+            case "Exit" -> {
+                System.out.println("Du haßt das Spiel beendet");
+                System.exit(0);
+            }
             case "Save" -> SaveGame.saveGame(player1);
             case "Load" -> SaveGame.loadGame(player1);
             default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");

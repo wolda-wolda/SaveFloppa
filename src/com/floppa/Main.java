@@ -1,5 +1,6 @@
 package com.floppa;
 
+import com.floppa.Entity.Floppa;
 import com.floppa.Entity.Player;
 import com.floppa.Items.Food;
 import com.floppa.Items.Item;
@@ -16,10 +17,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String ch = "";
         Room room = new Room(new Info("StartRoom", "IDK"));
-        Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room);
-        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10,1));
-        player1.heal(new Food(new Info("Birne", "Dein HP wird steigen"),1,101));
-        player1.heal(new Food(new Info("Apfel", "Dein HP wird steigen"),1,2));
+        Floppa floppa = new Floppa(new Info("Big Floppa", "Angy when sees Bri ish 'person'"));
+        Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room, floppa);
+        player1.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10, 1));
+        floppa.levelUp(new Food(new Info("Apfel", "Macht die groß und Stark"), 10, 1));
+        player1.heal(new Food(new Info("Birne", "Dein HP wird steigen"), 1, 101));
+        player1.heal(new Food(new Info("Apfel", "Dein HP wird steigen"), 1, 2));
 
 
         addStartingArea(room);
@@ -27,7 +30,7 @@ public class Main {
         while (!Objects.equals(ch, "Exit")) {
             System.out.println("INPUT: ");
             ch = scanner.next();
-            player1.move(ch, player1);
+            player1.Menu(ch, player1);
             if (!Objects.equals(ch, "Exit")) {
                 System.out.println("Position des aktuellen Spielers: " + player1.getPos());
             }

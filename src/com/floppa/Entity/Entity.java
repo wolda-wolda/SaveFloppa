@@ -4,12 +4,8 @@ import com.floppa.Items.Food;
 import com.floppa.Info;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class Entity {
     private Info info;
@@ -17,6 +13,10 @@ public class Entity {
     private int currentLevel = 1;
     private int curXP = 0;
     private Map<Integer, Integer> xpPerLevel = loadXpPerLevel();
+
+    public Entity(Info info) {
+        this.info = info;
+    }
 
     public Map<Integer, Integer> loadXpPerLevel() {
         Map<Integer, Integer> xpPerLevel = new LinkedHashMap<>();
@@ -35,7 +35,7 @@ public class Entity {
         return this.xpPerLevel = xpPerLevel;
     }
 
-    private void checkCurrentXP() {
+    public void checkCurrentXP() {
         Integer xpRequired;
         xpRequired = xpPerLevel.get(currentLevel);
         if (null != xpRequired) {
@@ -46,7 +46,11 @@ public class Entity {
         }
     }
 
-    private void performLevelUp() {
+    public Map<Integer, Integer> getXpPerLevel() {
+        return xpPerLevel;
+    }
+
+    public void performLevelUp() {
         System.out.println(" #############################");
         System.out.println(" # Neues Level erreicht " + (++currentLevel) + "!   # ");
         System.out.println(" #############################");
