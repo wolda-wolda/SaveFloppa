@@ -1,5 +1,6 @@
 package com.floppa.Entity;
 
+import Config.SaveGame.SaveGame;
 import com.floppa.Info;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
@@ -48,13 +49,15 @@ public class Player extends Entity {
         }
     }
 
-    public void move(String ch) {
+    public void move(String ch, Player player1) {
         switch (ch) {
             case "w" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() + 1));
             case "s" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() - 1));
             case "a" -> this.applyPos(this.pos.setPos(this.pos.getX() - 1, this.pos.getY()));
             case "d" -> this.applyPos(this.pos.setPos(this.pos.getX() + 1, this.pos.getY()));
             case "Exit" -> System.out.println("Du haßt das Spiel beendet");
+            case "Save" -> SaveGame.saveGame(player1);
+            case "Load" -> SaveGame.loadGame(player1);
             default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");
         }
     }
@@ -68,5 +71,10 @@ public class Player extends Entity {
             case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
             case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
         }
+    }
+
+    public void stringToKey(String pos) {
+        String[] tmp = pos.split(",");
+        this.pos = new Pos(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
     }
 }

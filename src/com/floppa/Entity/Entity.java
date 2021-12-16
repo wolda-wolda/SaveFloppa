@@ -3,11 +3,13 @@ package com.floppa.Entity;
 import com.floppa.Items.Food;
 import com.floppa.Info;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class Entity {
     private Info info;
@@ -57,12 +59,36 @@ public class Entity {
 
     public void heal(Food food) {
 
-        if(this.hp < 100){
+        if (this.hp < 100) {
             this.hp += food.getHp();
-                if(this.hp > 100){
-                    this.hp = 100;
-                }
+            if (this.hp > 100) {
+                this.hp = 100;
+            }
             System.out.println("Erfolgreich " + food.getInfo() + " hat HP von " + this.hp);
         }
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public int getCurXP() {
+        return curXP;
+    }
+
+    public void setCurXP(int curXP) {
+        this.curXP = curXP;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }
