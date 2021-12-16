@@ -37,7 +37,8 @@ public class Player extends Entity {
             this.pos = pos;
             if (currentRoom.hasDoorAt(pos)) {
                 String strPos = currentRoom.keyToString(pos);
-                this.currentRoom = currentRoom.getRooms().get(strPos);
+                switchRoom(strPos);
+
                 System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
                 this.pos = new Pos(3, 3);
             }
@@ -55,6 +56,17 @@ public class Player extends Entity {
             case "d" -> this.applyPos(this.pos.setPos(this.pos.getX() + 1, this.pos.getY()));
             case "Exit" -> System.out.println("Du haßt das Spiel beendet");
             default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");
+        }
+    }
+
+    public void switchRoom(String strPos) {
+        Room tmp = currentRoom;
+        this.currentRoom = currentRoom.getRooms().get(strPos);
+        switch (strPos) {
+            case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
+            case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
+            case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
+            case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
         }
     }
 }
