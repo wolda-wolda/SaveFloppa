@@ -29,7 +29,7 @@ public class Main {
         room.printWorldObjects();
         while (!Objects.equals(ch, "Exit")) {
             System.out.println("INPUT: ");
-            ch = scanner.next();
+            ch = scanner.nextLine();
             Menu(ch, player1);
             if (!Objects.equals(ch, "Exit")) {
                 System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
