@@ -56,8 +56,8 @@ public class Entity {
         System.out.println(" #############################");
     }
 
-    public void levelUp(Food food) {
-        this.curXP += food.getStrength();
+    public void levelUp(Player player, String part3) {
+        this.curXP += player.depositFood(part3).getStrength();
         checkCurrentXP();
     }
 

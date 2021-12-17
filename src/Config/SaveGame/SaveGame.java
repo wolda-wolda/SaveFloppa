@@ -1,7 +1,6 @@
 package Config.SaveGame;
 
 import com.floppa.Entity.Player;
-import com.floppa.Position.Pos;
 
 import java.io.*;
 import java.util.Properties;
@@ -15,7 +14,7 @@ public class SaveGame {
             prop.setProperty("level", String.valueOf(player.getCurrentLevel()));
             prop.setProperty("XP", String.valueOf(player.getCurXP()));
             prop.setProperty("hp", String.valueOf(player.getHp()));
-            prop.setProperty("pos", player.getPos());
+            prop.setProperty("pos", player.getPosString());
 
             // save properties to project root folder
             prop.store(output, null);

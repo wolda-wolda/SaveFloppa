@@ -40,5 +40,7 @@ public class Floppa extends Entity {
         System.out.println(" # Floppa reached new Age " + (++this.age) + "! # ");
         System.out.println(" #############################");
         this.setCurrentLevel(getCurrentLevel() + 1);
+        this.starvin = false;
+        this.needFoodNextRound = false;
     }
 }

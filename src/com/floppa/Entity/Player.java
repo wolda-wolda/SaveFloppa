@@ -1,15 +1,19 @@
 package com.floppa.Entity;
 
-import Config.SaveGame.SaveGame;
 import com.floppa.Info;
+import com.floppa.Items.Food;
+import com.floppa.Items.Inventory;
+import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
 import com.floppa.WorldObject.WorldObject;
 
 import java.util.ArrayList;
 
+import static com.floppa.Menu.Menu.Menu;
+
 public class Player extends Entity {
-    private ArrayList<WorldObject> inventory = new ArrayList<>();
+    private Inventory inventory = new Inventory(10);
     private Pos pos;
     private Info info;
     private Room currentRoom;
@@ -20,18 +24,34 @@ public class Player extends Entity {
         this.pos = new Pos(3, 3);
         this.currentRoom = room;
         this.floppa = floppa;
+        this.inventory.addItem(new Food(new Info("Apple", "ssf"), 10, 10));
     }
 
-    void grabWorldObject() {
-        //Add Item to Inventory
+    public void grabWorldObject(Item item) {
+        inventory.addItem(item);
     }
 
-    void depositWorldObject() {
-        //Drop or put an Item somewhere
+    public Item depositWorldObject(String string) {
+        int i = inventory.findItem(string);
+        if (i != -1) {
+            return inventory.removeItem(i);
+        }
+        return null;
     }
 
+    public Food depositFood(String string) {
+        int i = inventory.findItem(string);
+        if (i != -1) {
+            return (Food) inventory.removeItem(i);
+        }
+        return null;
+    }
 
-    public String getPos() {
+    public Pos getPos() {
+        return pos;
+    }
+
+    public String getPosString() {
         return this.pos.getX() + "|" + this.pos.getY();
     }
 
@@ -57,22 +77,6 @@ public class Player extends Entity {
         }
     }
 
-    public void Menu(String ch, Player player1) {
-        switch (ch) {
-            case "w" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() + 1));
-            case "s" -> this.applyPos(this.pos.setPos(this.pos.getX(), this.pos.getY() - 1));
-            case "a" -> this.applyPos(this.pos.setPos(this.pos.getX() - 1, this.pos.getY()));
-            case "d" -> this.applyPos(this.pos.setPos(this.pos.getX() + 1, this.pos.getY()));
-            case "Exit" -> {
-                System.out.println("Du haßt das Spiel beendet");
-                System.exit(0);
-            }
-            case "Save" -> SaveGame.saveGame(player1);
-            case "Load" -> SaveGame.loadGame(player1);
-            default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");
-        }
-    }
-
     public void switchRoom(String strPos) {
         Room tmp = currentRoom;
         this.currentRoom = currentRoom.getRooms().get(strPos);
@@ -87,5 +91,9 @@ public class Player extends Entity {
     public void stringToKey(String pos) {
         String[] tmp = pos.split(",");
         this.pos = new Pos(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+    }
+
+    public Floppa getFloppa() {
+        return floppa;
     }
 }

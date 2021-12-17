@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Inventory {
 
-    ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     public Inventory(int size) {
         for (int i = 0; i < size; i++) {
@@ -17,9 +17,9 @@ public class Inventory {
        items.set(index, item);
     }
 
-    public void removeItem(int index){
-        items.set(index,null);
+    public Item removeItem(int index) {
         System.out.println("Item removed");
+        return items.get(index);
     }
 
     public void switchItem(int sIndex, int tIndex) {
@@ -42,7 +42,16 @@ public class Inventory {
         return false;
     }
 
-
+    public int findItem(String item) {
+        for (int i = 0; i < this.items.size(); i++) {
+            if (Objects.equals(item, items.get(i).info.getName())) {
+                return i;
+            } else {
+                System.out.println("Object not in your Inventory");
+            }
+        }
+        return -1;
+    }
 }
 
 
