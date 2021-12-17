@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Entity {
-    private Info info;
+    private final Info info;
     private int hp;
     private int currentLevel = 1;
     private int curXP = 0;
@@ -57,18 +57,23 @@ public class Entity {
     }
 
     public void levelUp(Player player, String part3) {
-        this.curXP += player.depositFood(part3).getStrength();
-        checkCurrentXP();
+        var tmp = player.depositFood(part3);
+        if (tmp != null) {
+            this.curXP += tmp.getStrength();
+            checkCurrentXP();
+        }
     }
 
-    public void heal(Food food) {
-
-        if (this.hp < 100) {
-            this.hp += food.getHp();
-            if (this.hp > 100) {
-                this.hp = 100;
+    public void heal(Player player, String part3) {
+        var tmp = player.depositFood(part3);
+        if (tmp != null) {
+            if (this.hp < 100) {
+                this.hp += tmp.getHp();
+                if (this.hp > 100) {
+                    this.hp = 100;
+                }
+                System.out.println("Erfolgreich " + tmp.getInfo() + " hat HP von " + this.hp);
             }
-            System.out.println("Erfolgreich " + food.getInfo() + " hat HP von " + this.hp);
         }
     }
 

@@ -11,6 +11,7 @@ import com.floppa.WorldObject.WorldObject;
 
 import java.util.*;
 
+import static com.floppa.Menu.MainMenu.mainMenu;
 import static com.floppa.Menu.Menu.Menu;
 
 public class Main {
@@ -24,14 +25,17 @@ public class Main {
 
 
         addStartingArea(room);
-        room.printWorldObjects();
-        player1.getInventory().print();
-        while (!Objects.equals(ch, "Exit")) {
-            System.out.println("INPUT: ");
-            ch = scanner.nextLine();
-            Menu(ch, player1);
-            if (!Objects.equals(ch, "Exit")) {
-                System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
+
+        if (Objects.equals(mainMenu(), "Continue")) {
+            room.printWorldObjects();
+            player1.getInventory().print();
+            while (!Objects.equals(ch, "Exit")) {
+                System.out.println("INPUT: ");
+                ch = scanner.nextLine();
+                Menu(ch, player1);
+                if (!Objects.equals(ch, "Exit")) {
+                    System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
+                }
             }
         }
     }
@@ -39,7 +43,7 @@ public class Main {
     public static void addStartingArea(Room room) {
         ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
         allWorldObjects.add(new WorldObject(new Info("Chest", "Chest")));
-        ArrayList<Item>allItems = new ArrayList<>();
+        ArrayList<Item> allItems = new ArrayList<>();
         allItems.add(new Food(new Info("Apple", "Apple"), 5, 5));
         room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
         room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK")));
