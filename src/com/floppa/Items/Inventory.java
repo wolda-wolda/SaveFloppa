@@ -63,6 +63,16 @@ public class Inventory {
         }
         return -1;
     }
+
+    public void print() {
+        int count = 0;
+        for (Item x : items) {
+            if(x != null) {
+                count++;
+                System.out.println(count + ": " + x);
+            }
+        }
+    }
 }
 
 

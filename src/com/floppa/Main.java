@@ -25,6 +25,7 @@ public class Main {
 
         addStartingArea(room);
         room.printWorldObjects();
+        player1.getInventory().print();
         while (!Objects.equals(ch, "Exit")) {
             System.out.println("INPUT: ");
             ch = scanner.nextLine();

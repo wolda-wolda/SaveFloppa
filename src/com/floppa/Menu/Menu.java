@@ -2,6 +2,7 @@ package com.floppa.Menu;
 
 import Config.SaveGame.SaveGame;
 import com.floppa.Entity.Player;
+import com.floppa.Position.Pos;
 
 public class Menu {
     public static void Menu(String ch, Player player1) {
@@ -31,6 +32,14 @@ public class Menu {
                 }
             }
             default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");
+            case "Open" -> {
+                for (Pos pos : player1.getCurrentRoom().getObjects().keySet()) {
+                    if(player1.comparePos(pos, player1.getPos())) {
+                        player1.getInventory().addItem(player1.getCurrentRoom().getObjects().get(pos).open());
+                        player1.getInventory().print();
+                    }
+                }
+            }
         }
     }
 }

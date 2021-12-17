@@ -84,7 +84,6 @@ public class Room {
             w.addItem(items.get(rng.nextInt(items.size())));
             objects.put(tmpPos, w);
             avoid.add(tmpPos);
-
         }
     }
 
@@ -127,5 +126,7 @@ public class Room {
         }
         return false;
     }
-
+    public LinkedHashMap<Pos, WorldObject> getObjects() {
+        return objects;
+    }
 }
