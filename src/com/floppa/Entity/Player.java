@@ -96,4 +96,19 @@ public class Player extends Entity {
     public Floppa getFloppa() {
         return floppa;
     }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public boolean comparePos(Pos x, Pos y) {
+        if(x.getX() == y.getX() && x.getY() == y.getY()) {
+            return true;
+        }
+        return false;
+    }
 }

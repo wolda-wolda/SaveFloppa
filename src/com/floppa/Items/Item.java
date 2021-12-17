@@ -22,4 +22,9 @@ public abstract class Item {
     public void decrementCount() {
         this.count--;
     }
+
+    @Override
+    public String toString() {
+        return info.getName() + " | " + info.getDescription() + " | " + this.count;
+    }
 }

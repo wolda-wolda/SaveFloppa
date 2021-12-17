@@ -15,7 +15,7 @@ public class Chest extends WorldObject {
     }
 
     @Override
-    public ArrayList<Item> open() {
+    public Item open() {
         //makes open zhe chest
         return null;
     }

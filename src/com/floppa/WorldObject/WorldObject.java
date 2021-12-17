@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class WorldObject {
     private Info info;
-    private ArrayList<Item> content = new ArrayList<>();
+    private Item content;
     private boolean open = false;
 
     public WorldObject(Info info) {
         this.info = info;
     }
 
-    public ArrayList<Item> open() {
+    public Item open() {
         if(!open) {
             open = true;
             return content;
@@ -25,6 +25,6 @@ public class WorldObject {
     }
 
     public void addItem(Item item) {
-        content.add(item);
+        content = item;
     }
 }
