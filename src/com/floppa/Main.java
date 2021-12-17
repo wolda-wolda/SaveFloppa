@@ -38,16 +38,13 @@ public class Main {
     }
 
     public static void addStartingArea(Room room) {
+        ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
+        allWorldObjects.add(new WorldObject(new Info("Chest", "Chest")));
+        ArrayList<Item>allItems = new ArrayList<>();
+        allItems.add(new Food(new Info("Apple", "Apple"), 5, 5));
         room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
         room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK")));
         room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
-
-        LinkedHashMap<Pos, WorldObject> objects = new LinkedHashMap<>();
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Food(new Info("Apfel", "xdds"), 1, 10));
-        objects.put(new Pos(3, 4), new Chest(new Info("Chest", "Chest"), items));
-        objects.put(new Pos(3, 5), new Chest(new Info("Chest2", "Chest2"), items));
-        objects.put(new Pos(1, 1), new WorldObject(new Info("TestObjekt", "Test")));
-        room.fillRoom(objects);
+        room.fill(allWorldObjects, allItems);
     }
 }

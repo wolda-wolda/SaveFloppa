@@ -6,7 +6,7 @@ import com.floppa.Items.Item;
 
 import java.util.ArrayList;
 
-public class Chest extends WorldObject implements Interaction {
+public class Chest extends WorldObject {
     private ArrayList<Item> content;
 
     public Chest(Info info, ArrayList<Item> items) {
@@ -15,7 +15,8 @@ public class Chest extends WorldObject implements Interaction {
     }
 
     @Override
-    public void open() {
+    public ArrayList<Item> open() {
         //makes open zhe chest
+        return null;
     }
 }
