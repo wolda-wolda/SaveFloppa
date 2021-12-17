@@ -20,10 +20,14 @@ public class Menu {
             case "Load" -> SaveGame.loadGame(player1);
             case "Feed" -> {
                 switch (newStr[1]) {
-                    case "Floppa":
-                        player1.getFloppa().levelUp(player1, newStr[2]);
-                    case "Player":
-                        player1.levelUp(player1, newStr[2]);
+                    case "Floppa" -> player1.getFloppa().levelUp(player1, newStr[2]);
+                    case "Player" -> player1.levelUp(player1, newStr[2]);
+                }
+            }
+            case "heal" -> {
+                switch (newStr[1]) {
+                    case "Floppa" -> player1.getFloppa().heal(player1, newStr[2]);
+                    case "Player" -> player1.heal(player1, newStr[2]);
                 }
             }
             default -> System.out.println("Falsche Benutzereingabe verwende nur: W, S, A, D");

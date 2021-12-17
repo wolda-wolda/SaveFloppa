@@ -11,15 +11,20 @@ public class Inventory {
         for (int i = 0; i < size; i++) {
             items.add(null);
         }
-     }
+    }
 
     public void setItems(int index, Item item) {
-       items.set(index, item);
+        items.set(index, item);
     }
 
     public Item removeItem(int index) {
-        System.out.println("Item removed");
-        return items.get(index);
+        if (items.size() > 0) {
+            var tmp = items.get(index);
+            items.set(index, null);
+            System.out.println("Item removed");
+            return tmp;
+        }
+        return null;
     }
 
     public void switchItem(int sIndex, int tIndex) {
@@ -29,8 +34,8 @@ public class Inventory {
         System.out.println("Item changed");
     }
 
-    public boolean addItem(Item item){
-        for (int i = 0; i < items.size(); i ++){
+    public boolean addItem(Item item) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i) == null) {
                 setItems(i, item);
                 return true;
@@ -44,10 +49,16 @@ public class Inventory {
 
     public int findItem(String item) {
         for (int i = 0; i < this.items.size(); i++) {
-            if (Objects.equals(item, items.get(i).info.getName())) {
-                return i;
+            var tmp = items.get(i);
+            if (tmp != null) {
+                if (Objects.equals(item, tmp.info.getName())) {
+                    return i;
+                } else {
+                    System.out.println("Object not in your Inventory");
+                }
             } else {
                 System.out.println("Object not in your Inventory");
+                break;
             }
         }
         return -1;

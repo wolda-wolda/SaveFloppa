@@ -21,8 +21,6 @@ public class Main {
         Room room = new Room(new Info("StartRoom", "IDK"));
         Floppa floppa = new Floppa(new Info("Big Floppa", "Angy when sees Bri ish 'person'"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room, floppa);
-        player1.heal(new Food(new Info("Birne", "Dein HP wird steigen"), 1, 101));
-        player1.heal(new Food(new Info("Apfel", "Dein HP wird steigen"), 1, 2));
 
 
         addStartingArea(room);

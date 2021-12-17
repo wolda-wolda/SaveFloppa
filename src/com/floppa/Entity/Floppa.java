@@ -42,5 +42,6 @@ public class Floppa extends Entity {
         this.setCurrentLevel(getCurrentLevel() + 1);
         this.starvin = false;
         this.needFoodNextRound = false;
+        this.dead = false;
     }
 }
