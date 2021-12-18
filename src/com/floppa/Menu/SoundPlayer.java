@@ -11,7 +11,7 @@ public class SoundPlayer {
 
         new Thread(() -> {
             try {
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/Config/floppa.wav"));
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + "/src/Config/Briish.wav"));
                 clip.open(inputStream);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);

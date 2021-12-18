@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Scanner;
 
 
-public class MainMenu {
+public abstract class MainMenu {
     public static String mainMenu() {
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);

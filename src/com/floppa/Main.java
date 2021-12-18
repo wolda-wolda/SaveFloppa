@@ -25,17 +25,15 @@ public class Main {
 
 
         addStartingArea(room);
-
-        if (Objects.equals(mainMenu(), "Continue")) {
-            room.printWorldObjects();
-            player1.getInventory().print();
-            while (!Objects.equals(ch, "Exit")) {
-                System.out.println("INPUT: ");
-                ch = scanner.nextLine();
-                Menu(ch, player1);
-                if (!Objects.equals(ch, "Exit")) {
-                    System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
-                }
+        Menu(mainMenu(), player1);
+        room.printWorldObjects();
+        player1.getInventory().print();
+        while (!Objects.equals(ch, "Exit")) {
+            System.out.println("INPUT: ");
+            ch = scanner.nextLine();
+            Menu(ch, player1);
+            if (!Objects.equals(ch, "Exit")) {
+                System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
             }
         }
     }
