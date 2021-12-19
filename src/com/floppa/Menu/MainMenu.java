@@ -20,7 +20,7 @@ public abstract class MainMenu {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        soundPlayer.playSound(clip);
+        soundPlayer.playSound(clip, "/src/Config/Briish.wav");
 
         System.out.println("1. Continue");
         System.out.println("2. Load Game");

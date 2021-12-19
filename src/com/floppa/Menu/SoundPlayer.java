@@ -7,11 +7,11 @@ import java.io.File;
 
 public class SoundPlayer {
 
-    public void playSound(Clip clip) {
+    public void playSound(Clip clip, String path) {
 
         new Thread(() -> {
             try {
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + "/src/Config/Briish.wav"));
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + path));
                 clip.open(inputStream);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
