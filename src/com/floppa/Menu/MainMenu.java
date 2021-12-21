@@ -8,8 +8,14 @@ import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
 import java.util.Scanner;
 
-
+/**
+ * Class for implementing a Main Menu with Music
+ */
 public abstract class MainMenu {
+    /**
+     * Prints the Menu and plays the Music
+     * @return
+     */
     public static String mainMenu() {
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);

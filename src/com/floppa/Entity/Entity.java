@@ -7,6 +7,9 @@ import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/***
+ * Class for implementing non-static Entities
+ */
 public class Entity {
     private final Info info;
     private int hp;
@@ -14,10 +17,18 @@ public class Entity {
     private int curXP = 0;
     private Map<Integer, Integer> xpPerLevel = loadXpPerLevel();
 
+    /**
+     * Sets the Info
+     * @param info
+     */
     public Entity(Info info) {
         this.info = info;
     }
 
+    /**
+     * Returns the XP from a File
+     * @return
+     */
     public Map<Integer, Integer> loadXpPerLevel() {
         Map<Integer, Integer> xpPerLevel = new LinkedHashMap<>();
         String file = System.getProperty("user.dir") + "/src/Config/LevelingSystem.txt";
@@ -35,6 +46,10 @@ public class Entity {
         return this.xpPerLevel = xpPerLevel;
     }
 
+    /***
+     * Level Up, if the current XP is enough for the next Level
+     * Do nothing otherwise
+     */
     public void checkCurrentXP() {
         Integer xpRequired;
         xpRequired = xpPerLevel.get(currentLevel);
@@ -46,16 +61,28 @@ public class Entity {
         }
     }
 
+    /**
+     * Return XP loaded from File
+     * @return
+     */
     public Map<Integer, Integer> getXpPerLevel() {
         return xpPerLevel;
     }
 
+    /***
+     * Print the Level up Information
+     */
     public void performLevelUp() {
         System.out.println(" #############################");
         System.out.println(" # Neues Level erreicht " + (++currentLevel) + "!   # ");
         System.out.println(" #############################");
     }
 
+    /***
+     * Level up the Entity
+     * @param player
+     * @param part3
+     */
     public void levelUp(Player player, String part3) {
         var tmp = player.depositFood(part3);
         if (tmp != null) {
@@ -64,6 +91,11 @@ public class Entity {
         }
     }
 
+    /***
+     * Heal the Entity
+     * @param player
+     * @param part3
+     */
     public void heal(Player player, String part3) {
         var tmp = player.depositFood(part3);
         if (tmp != null) {
@@ -77,26 +109,50 @@ public class Entity {
         }
     }
 
+    /***
+     * Return the Entity's HP
+     * @return
+     */
     public int getHp() {
         return hp;
     }
 
+    /***
+     * Return the current Level
+     * @return
+     */
     public int getCurrentLevel() {
         return currentLevel;
     }
 
+    /**
+     * Return the current XP
+     * @return
+     */
     public int getCurXP() {
         return curXP;
     }
 
+    /**
+     * Set the current XP
+     * @param curXP
+     */
     public void setCurXP(int curXP) {
         this.curXP = curXP;
     }
 
+    /**
+     * Set the current HP
+     * @param hp
+     */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
+    /**
+     * Set the current Level
+     * @param currentLevel
+     */
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }

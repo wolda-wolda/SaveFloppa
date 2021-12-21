@@ -6,9 +6,6 @@ import com.floppa.Items.Inventory;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
-import com.floppa.WorldObject.WorldObject;
-
-import java.util.ArrayList;
 
 import static com.floppa.Menu.Menu.Menu;
 
@@ -108,7 +105,7 @@ public class Player extends Entity {
                     System.out.println("Your Floppa died: GAME OVER");
                     Menu("Exit", this);
                 } else {
-                    this.floppa.isStarvin();
+                    this.floppa.isStarving();
                 }
             }
             currentRoom.hasWorldObjectAt(pos);

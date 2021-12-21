@@ -3,8 +3,14 @@ package com.floppa.Menu;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Class for getting help with the current Situation they are in
+ */
 public abstract class Help {
 
+    /***
+     * Prints the Help=Page
+     */
     public static void helpPage() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Help Page:");
@@ -21,6 +27,9 @@ public abstract class Help {
         ClearConsole();
     }
 
+    /**
+     * Clears all the Text from the Console Window
+     */
     public static void ClearConsole() {
         try {
             String operatingSystem = System.getProperty("os.name"); //Check the current operating system

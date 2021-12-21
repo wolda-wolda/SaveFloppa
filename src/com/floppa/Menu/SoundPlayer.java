@@ -5,8 +5,16 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
+/***
+ * Implements a Thread along with a Sound Player
+ */
 public class SoundPlayer {
 
+    /**
+     * Plays a given Sound and loops it infinitely
+     * @param clip
+     * @param path
+     */
     public void playSound(Clip clip, String path) {
 
         new Thread(() -> {
