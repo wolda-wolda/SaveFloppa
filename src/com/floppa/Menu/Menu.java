@@ -4,6 +4,9 @@ import Config.SaveGame.SaveGame;
 import com.floppa.Entity.Player;
 import com.floppa.Position.Pos;
 
+/***
+ * Handles Player Input
+ */
 public class Menu {
     public static void Menu(String ch, Player player1) {
         String string = ch;
