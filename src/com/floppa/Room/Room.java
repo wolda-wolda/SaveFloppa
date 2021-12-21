@@ -8,6 +8,10 @@ import com.floppa.WorldObject.WorldObject;
 
 import java.util.*;
 
+/***
+ * Class for adding new Rooms to the World
+ */
+
 public class Room {
     private LinkedHashMap<Pos, WorldObject> objects = new LinkedHashMap<>();
     private Info info;
@@ -15,6 +19,12 @@ public class Room {
     private ArrayList<Pos> avoid = new ArrayList<>();
     private Pos max = new Pos(5, 5);
 
+    /***
+     * Takes the parameter Info which contains the name and description of the room
+     * Sets new Positions in the avoid ArrayList, which contains Positions where
+     * Worldobjects should not spawn
+     * @param info
+     */
     public Room(Info info) {
         this.info = info;
         avoid.add(new Pos(0, 3));
@@ -24,23 +34,48 @@ public class Room {
         avoid.add(new Pos(3, 3));
     }
 
+    /***
+     * Links the current Room to another Room
+     * The Position is determined by the parameter key
+     * and the new Room has to be given
+     * @param key
+     * @param room
+     */
     public void addRoom(Pos key, Room room) {
         String strKey = keyToString(key);
         this.rooms.put(strKey, room);
     }
 
+    /***
+     * Returns the rooms which are connected to the current Room
+     * @return
+     */
     public HashMap<String, Room> getRooms() {
         return rooms;
     }
 
+    /***
+     * Returns the length of the Room on the X-Axis
+     * @return
+     */
     public int getMaxX() {
         return max.getX();
     }
 
+    /***
+     * Return the length of the Room on the Y-Axis
+     * @return
+     */
     public int getMaxY() {
         return max.getX();
     }
 
+    /***
+     * Checks if there is a door, so a link to another room, at a given Position
+     * Returns a true if there is one, false if there is none
+     * @param pos
+     * @return
+     */
     public boolean hasDoorAt(Pos pos) {
         System.out.println(rooms.keySet());
         String key = keyToString(pos);
@@ -52,6 +87,11 @@ public class Room {
         return false;
     }
 
+    /***
+     * Checks if there is a WorldObject at a given Position
+     * If there is, prints it to the console, along with its position
+     * @param pos
+     */
     public void hasWorldObjectAt(Pos pos) {
         int i = 0;
         String[] stringPos = new String[objects.size()];
@@ -66,17 +106,33 @@ public class Room {
         }
     }
 
+    /***
+     * Convert a Key in String Format to a Key in Position Format
+     * @param pos
+     * @return
+     */
     public Pos stringToKey(String pos) {
         String[] tmp = pos.split(",");
         return new Pos(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
     }
 
+    /***
+     * Convert a Key in Position Format to a Key in String Format
+     * @param pos
+     * @return
+     */
     public String keyToString(Pos pos) {
         String x = String.valueOf(pos.getX());
         String y = String.valueOf(pos.getY());
         return x + "," + y;
     }
 
+    /***
+     * Fills the Room with randomly selected and given WorldObjects.
+     * The Contents in the WorldObjects are also given and randomly selected.
+     * @param wObjects
+     * @param items
+     */
     public void fill(ArrayList<WorldObject> wObjects, ArrayList<Item> items) {
         Random rng = new Random();
         for (WorldObject w : wObjects) {
@@ -87,6 +143,10 @@ public class Room {
         }
     }
 
+    /***
+     * Checks if there is a WorldObject in the current Room
+     * If there is, prints it to the console, along with its position
+     */
     public void printWorldObjects() {
         int i = 0;
         Pos[] pos = objects.keySet().toArray(new Pos[0]);
@@ -100,6 +160,11 @@ public class Room {
         }
     }
 
+    /***
+     * Returns the Type of the WorldObject in String Format
+     * @param p
+     * @return
+     */
     public String whichObject(Pos p) {
         if (objects.get(p).getClass() == Chest.class) {
             return "Kiste ";
@@ -107,6 +172,12 @@ public class Room {
             return "Anderes Objekt ";
         }
     }
+
+    /***
+     * Returns a random Position within the Room Bounds
+     * @param avoid
+     * @return
+     */
     public Pos getRandomPosRoom(ArrayList<Pos> avoid) {
         Random rng = new Random();
         Pos pos;
@@ -118,6 +189,13 @@ public class Room {
         return pos;
     }
 
+    /***
+     * Returns if a randomly generated Position is allowed or not
+     * Unallowed Positions are given through an ArrayList
+     * @param pos
+     * @param avoid
+     * @return
+     */
     public boolean comparePos(Pos pos, ArrayList<Pos> avoid) {
         for (Pos x : avoid) {
             if (pos.getX() == x.getX() && pos.getY() == x.getY()) {
