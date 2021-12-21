@@ -7,6 +7,10 @@ import com.floppa.Position.Pos;
 import static com.floppa.Menu.Help.helpPage;
 
 public abstract class Menu {
+/***
+ * Handles Player Input
+ */
+public class Menu {
     public static void Menu(String ch, Player player1) {
         String string = ch;
         String[] newStr = string.split("\\s+");
