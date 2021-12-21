@@ -11,6 +11,7 @@ import com.floppa.WorldObject.WorldObject;
 
 import java.util.*;
 
+import static com.floppa.Menu.MainMenu.mainMenu;
 import static com.floppa.Menu.Menu.Menu;
 
 public class Main {
@@ -21,11 +22,10 @@ public class Main {
         Room room = new Room(new Info("StartRoom", "IDK"));
         Floppa floppa = new Floppa(new Info("Big Floppa", "Angy when sees Bri ish 'person'"));
         Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room, floppa);
-        player1.heal(new Food(new Info("Birne", "Dein HP wird steigen"), 1, 101));
-        player1.heal(new Food(new Info("Apfel", "Dein HP wird steigen"), 1, 2));
 
 
         addStartingArea(room);
+        Menu(mainMenu(), player1);
         room.printWorldObjects();
         player1.getInventory().print();
         while (!Objects.equals(ch, "Exit")) {
@@ -41,7 +41,7 @@ public class Main {
     public static void addStartingArea(Room room) {
         ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
         allWorldObjects.add(new WorldObject(new Info("Chest", "Chest")));
-        ArrayList<Item>allItems = new ArrayList<>();
+        ArrayList<Item> allItems = new ArrayList<>();
         allItems.add(new Food(new Info("Apple", "Apple"), 5, 5));
         room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK")));
         room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK")));
