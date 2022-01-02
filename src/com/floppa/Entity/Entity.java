@@ -12,13 +12,14 @@ import java.util.Map;
  */
 public class Entity {
     private final Info info;
-    private int hp;
+    private int hp = 100;
     private int currentLevel = 1;
     private int curXP = 0;
     private Map<Integer, Integer> xpPerLevel = loadXpPerLevel();
 
     /**
      * Sets the Info
+     *
      * @param info
      */
     public Entity(Info info) {
@@ -27,6 +28,7 @@ public class Entity {
 
     /**
      * Returns the XP from a File
+     *
      * @return
      */
     public Map<Integer, Integer> loadXpPerLevel() {
@@ -63,6 +65,7 @@ public class Entity {
 
     /**
      * Return XP loaded from File
+     *
      * @return
      */
     public Map<Integer, Integer> getXpPerLevel() {
@@ -127,6 +130,7 @@ public class Entity {
 
     /**
      * Return the current XP
+     *
      * @return
      */
     public int getCurXP() {
@@ -135,6 +139,7 @@ public class Entity {
 
     /**
      * Set the current XP
+     *
      * @param curXP
      */
     public void setCurXP(int curXP) {
@@ -143,6 +148,7 @@ public class Entity {
 
     /**
      * Set the current HP
+     *
      * @param hp
      */
     public void setHp(int hp) {
@@ -151,6 +157,7 @@ public class Entity {
 
     /**
      * Set the current Level
+     *
      * @param currentLevel
      */
     public void setCurrentLevel(int currentLevel) {

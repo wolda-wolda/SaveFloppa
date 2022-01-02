@@ -7,6 +7,10 @@ import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
 
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
+
 import static com.floppa.Menu.Menu.Menu;
 
 /***
@@ -18,6 +22,7 @@ public class Player extends Entity {
     private Info info;
     private Room currentRoom;
     private Floppa floppa;
+    private Enemy currentEnemy;
 
     /***
      * Sets the Info, so the Name and Description of the Player
@@ -84,7 +89,7 @@ public class Player extends Entity {
      * @return
      */
     public String getPosString() {
-        return this.pos.getX() + "|" + this.pos.getY();
+        return this.pos.getX() + "," + this.pos.getY();
     }
 
     /***
@@ -93,19 +98,29 @@ public class Player extends Entity {
      * @param pos
      */
     public void applyPos(Pos pos) {
+        Scanner scanner = new Scanner(System.in);
         if ((pos.getX() <= currentRoom.getMaxX() && pos.getY() <= currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
             this.pos = pos;
             if (currentRoom.hasDoorAt(pos)) {
                 String strPos = currentRoom.keyToString(pos);
-                switchRoom(strPos);
+                if (currentRoom.getRooms().get(strPos).getEnemies().size() > 0) {
+                    System.out.println("Attention! Enemies are in this Room they will attack you! Are you sure you want to enter this Room? Yes or No");
+                    if (Objects.equals(scanner.nextLine().toLowerCase(), "yes")) {
+                        switchRoom(strPos);
+                        System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
+                        this.pos = new Pos(3, 3);
 
-                System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
-                this.pos = new Pos(3, 3);
-                if (this.floppa.isDead()) {
-                    System.out.println("Your Floppa died: GAME OVER");
-                    Menu("Exit", this);
-                } else {
-                    this.floppa.isStarving();
+                        if (this.floppa.isDead()) {
+                            System.out.println("Your Floppa died: GAME OVER");
+                            Menu("Exit", this);
+                        } else {
+                            this.floppa.isStarving();
+                        }
+                        
+                    } else {
+                        System.out.println("You didn't entered the room, your character Position got reset to the default Position");
+                        this.pos = new Pos(3, 3);
+                    }
                 }
             }
             currentRoom.hasWorldObjectAt(pos);
@@ -171,9 +186,17 @@ public class Player extends Entity {
      * @return
      */
     public boolean comparePos(Pos x, Pos y) {
-        if(x.getX() == y.getX() && x.getY() == y.getY()) {
+        if (x.getX() == y.getX() && x.getY() == y.getY()) {
             return true;
         }
         return false;
+    }
+
+    public void setCurrentRoom(String currentRoom) {
+        for (Map.Entry<String, Room> room : this.currentRoom.getRooms().entrySet()) {
+            if (Objects.equals(room.getValue().getInfo().getName(), currentRoom)) {
+                this.currentRoom = room.getValue();
+            }
+        }
     }
 }

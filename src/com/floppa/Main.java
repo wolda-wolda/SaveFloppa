@@ -6,7 +6,6 @@ import com.floppa.Items.Food;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
-import com.floppa.WorldObject.Chest;
 import com.floppa.WorldObject.WorldObject;
 
 import java.util.*;
@@ -39,6 +38,7 @@ public class Main {
     }
 
     public static void addStartingArea(Room room) {
+        int enemies = 0, level = 0;
         ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
         allWorldObjects.add(new WorldObject(new Info("Chest", "Chest")));
         ArrayList<Item> allItems = new ArrayList<>();
@@ -47,5 +47,9 @@ public class Main {
         room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK")));
         room.addRoom(new Pos(3, 5), new Room(new Info("NorthernRoom", "IDK")));
         room.fill(allWorldObjects, allItems);
+
+        for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
+            r.getValue().addEnemy(++enemies, ++level);
+        }
     }
 }

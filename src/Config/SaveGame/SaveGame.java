@@ -15,6 +15,7 @@ public class SaveGame {
             prop.setProperty("XP", String.valueOf(player.getCurXP()));
             prop.setProperty("hp", String.valueOf(player.getHp()));
             prop.setProperty("pos", player.getPosString());
+            prop.setProperty("room", player.getCurrentRoom().getInfo().getName());
 
             // save properties to project root folder
             prop.store(output, null);
@@ -38,6 +39,7 @@ public class SaveGame {
             player1.setCurrentLevel(Integer.parseInt(prop.getProperty("level")));
             player1.setHp(Integer.parseInt(prop.getProperty("hp")));
             player1.setCurXP(Integer.parseInt(prop.getProperty("XP")));
+            player1.setCurrentRoom(prop.getProperty("room"));
             player1.stringToKey(prop.getProperty("pos"));
 
         } catch (IOException ex) {

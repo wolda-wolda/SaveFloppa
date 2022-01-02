@@ -1,5 +1,6 @@
 package com.floppa.Room;
 
+import com.floppa.Entity.Enemy;
 import com.floppa.Info;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
@@ -17,6 +18,7 @@ public class Room {
     private Info info;
     private HashMap<String, Room> rooms = new HashMap<>();
     private ArrayList<Pos> avoid = new ArrayList<>();
+    private ArrayList<Enemy> enemies = new ArrayList<>();
     private Pos max = new Pos(5, 5);
 
     /***
@@ -184,8 +186,8 @@ public class Room {
         do {
             int x = rng.nextInt(5);
             int y = rng.nextInt(5);
-            pos = new Pos(x,y);
-        } while(comparePos(pos, avoid));
+            pos = new Pos(x, y);
+        } while (comparePos(pos, avoid));
         return pos;
     }
 
@@ -194,7 +196,7 @@ public class Room {
      * Unallowed Positions are given through an ArrayList
      * @param pos
      * @param avoid
-     * @return
+     * @return true or false
      */
     public boolean comparePos(Pos pos, ArrayList<Pos> avoid) {
         for (Pos x : avoid) {
@@ -204,7 +206,34 @@ public class Room {
         }
         return false;
     }
+
+    /**
+     * @return Hashmap with the WorldObejects from the current room
+     */
     public LinkedHashMap<Pos, WorldObject> getObjects() {
         return objects;
+    }
+
+    /**
+     * @return Info class
+     */
+    public Info getInfo() {
+        return info;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void addEnemy(int count, int level) {
+        Info defaultInfo = new Info("NPC Enemy", "Attacks Player and Floppa");
+        for (int i = 0; i < count; i++) {
+            enemies.add(new Enemy(defaultInfo, level));
+        }
+    }
+
+    public void removeEnemy() {
+        System.out.println("You killed an Enemy still " + (enemies.size() - 1) + " Enemies left");
+        enemies.remove(0);
     }
 }
