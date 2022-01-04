@@ -116,7 +116,9 @@ public class Player extends Entity {
                         } else {
                             this.floppa.isStarving();
                         }
-                        
+
+                        System.out.println("The Enemies noticed you and starting to attack you");
+                        currentEnemy.attackPlayer(this, currentRoom);
                     } else {
                         System.out.println("You didn't entered the room, your character Position got reset to the default Position");
                         this.pos = new Pos(3, 3);
@@ -142,6 +144,7 @@ public class Player extends Entity {
             case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
             case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
         }
+        currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
     }
 
     /***
@@ -198,5 +201,9 @@ public class Player extends Entity {
                 this.currentRoom = room.getValue();
             }
         }
+    }
+
+    public void fight() {
+
     }
 }

@@ -16,7 +16,7 @@ import java.util.*;
 public class Room {
     private LinkedHashMap<Pos, WorldObject> objects = new LinkedHashMap<>();
     private Info info;
-    private HashMap<String, Room> rooms = new HashMap<>();
+    private LinkedHashMap<String, Room> rooms = new LinkedHashMap<>();
     private ArrayList<Pos> avoid = new ArrayList<>();
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Pos max = new Pos(5, 5);

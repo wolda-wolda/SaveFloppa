@@ -15,7 +15,7 @@ import static com.floppa.Menu.Menu.Menu;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("[ENG] Welcome to Epic Floppa Gaem :D");
+        System.out.println("Welcome to Epic save floppa game have fun :D");
         Scanner scanner = new Scanner(System.in);
         String ch = "";
         Room room = new Room(new Info("StartRoom", "IDK"));
@@ -27,18 +27,18 @@ public class Main {
         Menu(mainMenu(), player1);
         room.printWorldObjects();
         player1.getInventory().print();
-        while (!Objects.equals(ch, "Exit")) {
+        while (!Objects.equals(ch, "exit")) {
             System.out.println("INPUT: ");
-            ch = scanner.nextLine();
+            ch = scanner.nextLine().toLowerCase();
             Menu(ch, player1);
-            if (!Objects.equals(ch, "Exit")) {
-                System.out.println("Position des aktuellen Spielers: " + player1.getPosString());
+            if (!Objects.equals(ch, "exit")) {
+                System.out.println("Position of player: " + player1.getPosString());
             }
         }
     }
 
     public static void addStartingArea(Room room) {
-        int enemies = 0, level = 0;
+        int enemies = 5, level = 1;
         ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
         allWorldObjects.add(new WorldObject(new Info("Chest", "Chest")));
         ArrayList<Item> allItems = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Main {
         room.fill(allWorldObjects, allItems);
 
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
-            r.getValue().addEnemy(++enemies, ++level);
+            r.getValue().addEnemy(enemies++, level++);
         }
     }
 }

@@ -6,6 +6,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 
 import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public abstract class MainMenu {
     /**
      * Prints the Menu and plays the Music
+     *
      * @return
      */
     public static String mainMenu() {
@@ -26,14 +28,19 @@ public abstract class MainMenu {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        soundPlayer.playSound(clip, "/src/Config/Briish.wav");
+        //soundPlayer.playSound(clip, "/src/Config/Briish.wav");
 
-        System.out.println("1. Continue");
-        System.out.println("2. Load Game");
-        System.out.println("3. Save Game");
-        System.out.println("4. Settings");
-        System.out.println("5. Exit");
-        String ret = scanner.nextLine();
+        System.out.println();
+        System.out.println("##################");
+        System.out.println("Continue");
+        System.out.println("Load Game");
+        System.out.println("Save Game");
+        System.out.println("Settings");
+        System.out.println("Exit");
+        System.out.println("##################");
+        System.out.println("Enter command:");
+        String ret = scanner.nextLine().toLowerCase();
+        System.out.println();
 
         if (clip != null) {
             clip.stop();

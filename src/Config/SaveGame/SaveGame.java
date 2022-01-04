@@ -20,7 +20,7 @@ public class SaveGame {
             // save properties to project root folder
             prop.store(output, null);
 
-            System.out.println("Ihre Savegame Dateien befinden sich im Ordner: " + prop);
+            System.out.println("Successfully saved");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,6 +41,8 @@ public class SaveGame {
             player1.setCurXP(Integer.parseInt(prop.getProperty("XP")));
             player1.setCurrentRoom(prop.getProperty("room"));
             player1.stringToKey(prop.getProperty("pos"));
+
+            System.out.println("Successfully loaded your savegame");
 
         } catch (IOException ex) {
             ex.printStackTrace();

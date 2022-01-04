@@ -21,8 +21,10 @@ public abstract class Help {
         System.out.println("Heal: Heal Player/Floppa FoodItem");
         System.out.println("Save/Load Game: Save/Load");
         System.out.println("Open: Opens WorldObject");
+        System.out.println("Menu: Opens main menu");
         System.out.println("Exit: Closes game without Saving");
         System.out.println("###########################################");
+        System.out.println("Press any key to proceed");
         scanner.nextLine();
         ClearConsole();
     }

@@ -1,8 +1,11 @@
 package com.floppa.Entity;
 
-import com.floppa.Items.Food;
 import com.floppa.Info;
+import com.floppa.Menu.SoundPlayer;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -76,9 +79,17 @@ public class Entity {
      * Print the Level up Information
      */
     public void performLevelUp() {
+        SoundPlayer soundPlayer = new SoundPlayer();
         System.out.println(" #############################");
         System.out.println(" # Neues Level erreicht " + (++currentLevel) + "!   # ");
         System.out.println(" #############################");
+        try {
+            Clip clip = AudioSystem.getClip();
+            soundPlayer.playSound(clip, "/src/Config/levelup.wav");
+            clip.stop();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     /***
