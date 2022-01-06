@@ -12,17 +12,20 @@ public class SoundPlayer {
 
     /**
      * Plays a given Sound and loops it infinitely
+     *
      * @param clip
      * @param path
      */
-    public void playSound(Clip clip, String path) {
+    public void playSound(Clip clip, String path, boolean loop) {
 
         new Thread(() -> {
             try {
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + path));
                 clip.open(inputStream);
                 clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                if (loop) {
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }

@@ -154,9 +154,9 @@ public class Room {
         Pos[] pos = objects.keySet().toArray(new Pos[0]);
         for (WorldObject o : objects.values()) {
             if (o.getClass() == Chest.class) {
-                System.out.println("Im Raum befindet sich eine Kiste an der Position: " + this.keyToString(pos[i]));
+                System.out.println("There is a chest in this room located at position: " + this.keyToString(pos[i]));
             } else if (o.getClass() == WorldObject.class) {
-                System.out.println("Im Raum befindet sich ein WorldObjekt an der Position: " + this.keyToString(pos[i]));
+                System.out.println("There is a world object in this room located at position: " + this.keyToString(pos[i]));
             }
             i++;
         }

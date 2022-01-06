@@ -21,7 +21,7 @@ public class Info {
      * Prints Name and Description
      */
     public void printInfo() {
-        System.out.println("Name: " + this.name + " Beschreibung: " + this.description);
+        System.out.println("Name: " + this.name + " Description: " + this.description);
     }
 
     /**

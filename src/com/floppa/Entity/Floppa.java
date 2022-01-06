@@ -71,8 +71,7 @@ public class Floppa extends Entity {
         System.out.println(" #############################");
         try {
             Clip clip = AudioSystem.getClip();
-            soundPlayer.playSound(clip, "/src/Config/levelup.wav");
-            clip.stop();
+            soundPlayer.playSound(clip, "/src/Config/levelup.wav", false);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }

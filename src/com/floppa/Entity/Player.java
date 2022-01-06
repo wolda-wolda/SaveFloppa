@@ -4,14 +4,19 @@ import com.floppa.Info;
 import com.floppa.Items.Food;
 import com.floppa.Items.Inventory;
 import com.floppa.Items.Item;
+import com.floppa.Menu.SoundPlayer;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
 import static com.floppa.Menu.Menu.Menu;
+import static java.lang.Thread.sleep;
 
 /***
  * Class for creating a playable Character
@@ -37,7 +42,7 @@ public class Player extends Entity {
         this.pos = new Pos(3, 3);
         this.currentRoom = room;
         this.floppa = floppa;
-        this.inventory.addItem(new Food(new Info("Apple", "ssf"), 10, 10));
+        this.inventory.addItem(new Food(new Info("apple", "ssf"), 10, 10));
     }
 
     /***
@@ -98,6 +103,7 @@ public class Player extends Entity {
      * @param pos
      */
     public void applyPos(Pos pos) {
+        SoundPlayer soundPlayer = new SoundPlayer();
         Scanner scanner = new Scanner(System.in);
         if ((pos.getX() <= currentRoom.getMaxX() && pos.getY() <= currentRoom.getMaxY()) && pos.getX() >= 0 && pos.getY() >= 0) {
             this.pos = pos;
@@ -112,7 +118,14 @@ public class Player extends Entity {
 
                         if (this.floppa.isDead()) {
                             System.out.println("Your Floppa died: GAME OVER");
-                            Menu("Exit", this);
+                            try {
+                                Clip clip = AudioSystem.getClip();
+                                soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                sleep(2000);
+                            } catch (LineUnavailableException | InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.exit(0);
                         } else {
                             this.floppa.isStarving();
                         }

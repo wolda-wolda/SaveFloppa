@@ -53,6 +53,14 @@ public abstract class Menu {
             }
             case "help" -> helpPage();
             case "menu" -> Menu(mainMenu(), player1);
+            case "inventory" -> player1.getInventory().print();
+            case "info" -> {
+                switch (newStr[1]) {
+                    case "player" -> player1.getInfo().printInfo();
+                    case "floppa" -> player1.getFloppa().getInfo().printInfo();
+                    case "room" -> player1.getCurrentRoom().getInfo().printInfo();
+                }
+            }
             default -> System.out.println("Command not recognised! Need help? Use the help command");
         }
     }

@@ -11,6 +11,7 @@ public abstract class Item {
 
     /**
      * Sets the Info of the Item and its Amount to 1
+     *
      * @param info
      */
     public Item(Info info) {
@@ -20,16 +21,17 @@ public abstract class Item {
 
     /**
      * Return the Item's Name
+     *
      * @return
      */
-    public String getInfo(){
+    public String getInfo() {
         return this.info.getName();
     }
 
     /**
      * Add 1 to the Item's Amount
      */
-    public void incrementCount(){
+    public void incrementCount() {
         this.count++;
     }
 
@@ -42,10 +44,11 @@ public abstract class Item {
 
     /**
      * Prints the Item with its properties in a readable Format
+     *
      * @return
      */
     @Override
     public String toString() {
-        return info.getName() + " | " + info.getDescription() + " | " + this.count;
+        return "Type: " + info.getName() + " | Count: " + this.count;
     }
 }

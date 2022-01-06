@@ -2,9 +2,9 @@ package com.floppa.WorldObject;
 
 import com.floppa.Info;
 
-public class Chest extends WorldObject {
+public class Closet extends WorldObject {
 
-    public Chest(Info info) {
+    public Closet(Info info) {
         super(info);
     }
 }

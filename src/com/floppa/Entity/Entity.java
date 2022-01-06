@@ -85,8 +85,7 @@ public class Entity {
         System.out.println(" #############################");
         try {
             Clip clip = AudioSystem.getClip();
-            soundPlayer.playSound(clip, "/src/Config/levelup.wav");
-            clip.stop();
+            soundPlayer.playSound(clip, "/src/Config/levelup.wav", false);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -173,5 +172,9 @@ public class Entity {
      */
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
+    }
+
+    public Info getInfo() {
+        return info;
     }
 }
