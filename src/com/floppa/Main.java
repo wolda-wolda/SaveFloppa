@@ -28,6 +28,13 @@ public class Main {
 
         addStartingArea(room);
         Menu(mainMenu(), player1);
+        System.out.println("On a sunny day Woldi was walking peacefully down an abandoned street.\n" +
+                "Suddenly he heard some weird noises coming from a house.\n" +
+                "Woldi as usual got curious and moved towards the house.\n" +
+                "He tried pushing the door a few times but wasn’t successful at it.\n" +
+                "Then he took some steps back and ran into the door.\n" +
+                "But someone had other plans for him. The wooden door got opened from the inside\n" +
+                "There was a chest in the middle of the room maybe he should open it\n");
         room.printWorldObjects();
         while (!Objects.equals(ch, "exit")) {
             System.out.println("INPUT: ");
@@ -48,7 +55,7 @@ public class Main {
         allItems.add(new Key(new Info("key", "unlocks doors")));
         room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK"), false));
         room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK"), false));
-        room.addRoom(new Pos(3, 5), new Room(new Info("EndRoom", "IDK"), true));
+        room.addRoom(new Pos(3, 5), new Room(new Info("SecondRoom", "IDK"), true));
         room.fill(allWorldObjects, allItems);
 
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {

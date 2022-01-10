@@ -5,6 +5,9 @@ import com.floppa.Entity.Player;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 
+import java.util.Objects;
+import java.util.Scanner;
+
 import static com.floppa.Menu.Help.helpPage;
 import static com.floppa.Menu.MainMenu.mainMenu;
 
@@ -48,6 +51,21 @@ public abstract class Menu {
                         while (i != null) {
                             player1.getInventory().addItem(i);
                             i = player1.getCurrentRoom().getObjects().get(pos).open();
+                            if (i != null && Objects.equals(i.getInfo(), "key")) {
+                                Scanner scanner = new Scanner(System.in);
+                                System.out.println("Inside the cest along some food was a book.\n" +
+                                        "After opening you have to know which of the following assumptions is correct?\n" +
+                                        "a.\tKarakals prey on rabbits.\n" +
+                                        "b.\tKarakals eat only vegetable.\n" +
+                                        "c.\tKarakals prey on their own kind.\n" +
+                                        "Enter letter of correct answer: ");
+                                String answer = scanner.nextLine();
+                                while (!Objects.equals(answer, "a")) {
+                                    System.out.println("Wrong answer try again!");
+                                    answer = scanner.nextLine();
+                                }
+                                System.out.println("Right answer! You got a key for the second room. Which is at position 3,5");
+                            }
                         }
                         player1.getInventory().print();
                     }
