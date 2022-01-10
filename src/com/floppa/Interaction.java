@@ -1,5 +1,9 @@
 package com.floppa;
 
+import com.floppa.Items.Item;
+
 public interface Interaction {
-    void open();
+    Item open();
+
+    void unlock(Item key);
 }

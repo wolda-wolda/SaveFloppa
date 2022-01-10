@@ -9,9 +9,9 @@ import java.util.ArrayList;
 /**
  * Class for implementing Objects which are static in a Room and contain Items
  */
-public class WorldObject {
+public class WorldObject implements Interaction {
     private Info info;
-    private Item content;
+    private ArrayList<Item> content;
     private boolean open = false;
 
     /***
@@ -26,20 +26,29 @@ public class WorldObject {
      * Opens the Object and returns its Content
      * @return
      */
+    @Override
     public Item open() {
         if(!open) {
-            open = true;
-            return content;
+            if (content.size() > 0) {
+                return content.remove(0);
+            } else {
+                open = true;
+                return null;
+            }
         }
         System.out.println("This Container has already been opened. It's empty");
         return null;
+    }
+
+    @Override
+    public void unlock(Item key) {
     }
 
     /***
      * Adds an Item as Content to the Object
      * @param item
      */
-    public void addItem(Item item) {
-        content = item;
+    public void addItem(ArrayList<Item> item) {
+        this.content = item;
     }
 }

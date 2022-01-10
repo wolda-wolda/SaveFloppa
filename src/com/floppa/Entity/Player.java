@@ -112,26 +112,27 @@ public class Player extends Entity {
                 if (currentRoom.getRooms().get(strPos).getEnemies().size() > 0) {
                     System.out.println("Attention! Enemies are in this Room they will attack you! Are you sure you want to enter this Room? Yes or No");
                     if (Objects.equals(scanner.nextLine().toLowerCase(), "yes")) {
-                        switchRoom(strPos);
-                        System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
-                        this.pos = new Pos(3, 3);
+                        if (switchRoom(strPos)) {
+                            System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
+                            this.pos = new Pos(3, 3);
 
-                        if (this.floppa.isDead()) {
-                            System.out.println("Your Floppa died: GAME OVER");
-                            try {
-                                Clip clip = AudioSystem.getClip();
-                                soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
-                                sleep(2000);
-                            } catch (LineUnavailableException | InterruptedException e) {
-                                e.printStackTrace();
+                            if (this.floppa.isDead()) {
+                                System.out.println("Your Floppa died: GAME OVER");
+                                try {
+                                    Clip clip = AudioSystem.getClip();
+                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                    sleep(2000);
+                                } catch (LineUnavailableException | InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                System.exit(0);
+                            } else {
+                                this.floppa.isStarving();
                             }
-                            System.exit(0);
-                        } else {
-                            this.floppa.isStarving();
-                        }
 
-                        System.out.println("The Enemies noticed you and starting to attack you");
-                        currentEnemy.attackPlayer(this, currentRoom);
+                            System.out.println("The Enemies noticed you and starting to attack you");
+                            currentEnemy.attackPlayer(this, currentRoom);
+                        }
                     } else {
                         System.out.println("You didn't entered the room, your character Position got reset to the default Position");
                         this.pos = new Pos(3, 3);
@@ -148,16 +149,30 @@ public class Player extends Entity {
      * Handles switching to another Room
      * @param strPos
      */
-    public void switchRoom(String strPos) {
+    public boolean switchRoom(String strPos) {
         Room tmp = currentRoom;
-        this.currentRoom = currentRoom.getRooms().get(strPos);
-        switch (strPos) {
-            case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
-            case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
-            case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
-            case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+        if (currentRoom.getRooms().get(strPos).isLocked()) {
+            System.out.println("You have to unlock the door first");
+            if (this.getInventory().findItem("key") != -1) {
+                Item key = inventory.removeItem(this.getInventory().findItem("key"));
+                this.currentRoom.getRooms().get(strPos).unlock(key);
+                this.currentRoom = currentRoom.getRooms().get(strPos);
+                switch (strPos) {
+                    case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
+                    case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
+                    case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
+                    case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+                }
+                currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+                return true;
+            } else {
+                System.out.println("You have to find the key for this room first! Hint: Search for chests in other rooms");
+                applyPos(new Pos(3, 3));
+                System.out.println("Position reset");
+                return false;
+            }
         }
-        currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+        return false;
     }
 
     /***

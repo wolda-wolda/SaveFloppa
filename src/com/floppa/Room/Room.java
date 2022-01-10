@@ -2,6 +2,7 @@ package com.floppa.Room;
 
 import com.floppa.Entity.Enemy;
 import com.floppa.Info;
+import com.floppa.Interaction;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.WorldObject.Chest;
@@ -13,13 +14,14 @@ import java.util.*;
  * Class for adding new Rooms to the World
  */
 
-public class Room {
+public class Room implements Interaction {
     private LinkedHashMap<Pos, WorldObject> objects = new LinkedHashMap<>();
     private Info info;
     private LinkedHashMap<String, Room> rooms = new LinkedHashMap<>();
     private ArrayList<Pos> avoid = new ArrayList<>();
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Pos max = new Pos(5, 5);
+    private boolean locked;
 
     /***
      * Takes the parameter Info which contains the name and description of the room
@@ -27,8 +29,9 @@ public class Room {
      * Worldobjects should not spawn
      * @param info
      */
-    public Room(Info info) {
+    public Room(Info info, boolean locked) {
         this.info = info;
+        this.locked = locked;
         avoid.add(new Pos(0, 3));
         avoid.add(new Pos(3, 0));
         avoid.add(new Pos(3, 5));
@@ -102,7 +105,7 @@ public class Room {
 
         for (Pos p : position) {
             if (key.equals(stringPos[i] = this.keyToString(p))) {
-                System.out.println("Objekt: " + this.whichObject(p) + "befindet sich an der aktuellen Stelle: " + this.keyToString(p));
+                System.out.println("object: " + this.whichObject(p) + "is located on your current position: " + this.keyToString(p));
             }
             i++;
         }
@@ -136,10 +139,9 @@ public class Room {
      * @param items
      */
     public void fill(ArrayList<WorldObject> wObjects, ArrayList<Item> items) {
-        Random rng = new Random();
         for (WorldObject w : wObjects) {
             Pos tmpPos = getRandomPosRoom(avoid);
-            w.addItem(items.get(rng.nextInt(items.size())));
+            w.addItem(items);
             objects.put(tmpPos, w);
             avoid.add(tmpPos);
         }
@@ -169,9 +171,9 @@ public class Room {
      */
     public String whichObject(Pos p) {
         if (objects.get(p).getClass() == Chest.class) {
-            return "Kiste ";
+            return "Chest ";
         } else {
-            return "Anderes Objekt ";
+            return "Other object ";
         }
     }
 
@@ -235,5 +237,23 @@ public class Room {
     public void removeEnemy() {
         System.out.println("You killed an Enemy still " + (enemies.size() - 1) + " Enemies left");
         enemies.remove(0);
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    @Override
+    public Item open() {
+        return null;
+    }
+
+    @Override
+    public void unlock(Item key) {
+        if (this.locked) {
+            locked = false;
+            System.out.println("You unlocked the door");
+            open();
+        }
     }
 }

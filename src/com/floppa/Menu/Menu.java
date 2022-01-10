@@ -2,6 +2,7 @@ package com.floppa.Menu;
 
 import Config.SaveGame.SaveGame;
 import com.floppa.Entity.Player;
+import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 
 import static com.floppa.Menu.Help.helpPage;
@@ -43,7 +44,11 @@ public abstract class Menu {
             case "open" -> {
                 for (Pos pos : player1.getCurrentRoom().getObjects().keySet()) {
                     if (player1.comparePos(pos, player1.getPos())) {
-                        player1.getInventory().addItem(player1.getCurrentRoom().getObjects().get(pos).open());
+                        var i = player1.getCurrentRoom().getObjects().get(pos).open();
+                        while (i != null) {
+                            player1.getInventory().addItem(i);
+                            i = player1.getCurrentRoom().getObjects().get(pos).open();
+                        }
                         player1.getInventory().print();
                     }
                 }
