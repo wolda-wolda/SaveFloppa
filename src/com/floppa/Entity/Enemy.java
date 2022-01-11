@@ -28,6 +28,11 @@ public class Enemy extends Entity {
             player.setHp(player.getHp() - (19 - (player.getCurrentLevel() - this.getCurrentLevel())));
             currentRoom.getEnemies().remove(0);
             System.out.println("You have " + player.getHp() + " HP left and still " + currentRoom.getEnemies().size() + " Enemies to defeat");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         if (player.getHp() <= 0) {
             System.out.println("You died! Game over");
