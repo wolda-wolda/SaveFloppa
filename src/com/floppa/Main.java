@@ -51,11 +51,11 @@ public class Main {
         ArrayList<WorldObject> allWorldObjects = new ArrayList<>();
         allWorldObjects.add(new Chest(new Info("Chest", "Chest")));
         ArrayList<Item> allItems = new ArrayList<>();
-        allItems.add(new Food(new Info("apple", "apple"), 5, 5));
+        allItems.add(new Food(new Info("apple", "apple"), 5, 50));
         allItems.add(new Key(new Info("key", "unlocks doors")));
-        room.addRoom(new Pos(5, 3), new Room(new Info("EasternRoom", "IDK"), false));
-        room.addRoom(new Pos(0, 3), new Room(new Info("WesternRoom", "IDK"), false));
-        room.addRoom(new Pos(3, 5), new Room(new Info("SecondRoom", "IDK"), true));
+        room.addRoom(new Pos(5, 3), new Room(new Info("SecondRoom", "IDK"), true));
+        room.addRoom(new Pos(0, 3), new Room(new Info("ThirdRoom", "IDK"), false));
+        room.addRoom(new Pos(3, 5), new Room(new Info("ForuthRoom", "IDK"), false));
         room.fill(allWorldObjects, allItems);
 
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {

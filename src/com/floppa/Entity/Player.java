@@ -172,7 +172,15 @@ public class Player extends Entity {
                 return false;
             }
         }
-        return false;
+        this.currentRoom = currentRoom.getRooms().get(strPos);
+        switch (strPos) {
+            case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
+            case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
+            case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
+            case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+        }
+        currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+        return true;
     }
 
     /***
