@@ -35,7 +35,7 @@ public class Enemy extends Entity {
             }
         }
         if (player.getHp() <= 0) {
-            System.out.println("You died! Game over");
+            System.out.println("You died! Game over!! You should level up or heal yourself to get past this level");
             try {
                 Clip clip = AudioSystem.getClip();
                 soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
