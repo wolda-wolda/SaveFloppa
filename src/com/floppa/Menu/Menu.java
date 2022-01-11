@@ -55,9 +55,9 @@ public abstract class Menu {
                                 Scanner scanner = new Scanner(System.in);
                                 System.out.println("Inside the cest along some food was a book.\n" +
                                         "After opening you have to know which of the following assumptions is correct?\n" +
-                                        "a.\tKarakals prey on rabbits.\n" +
-                                        "b.\tKarakals eat only vegetable.\n" +
-                                        "c.\tKarakals prey on their own kind.\n" +
+                                        "a.\tCaracals prey on rabbits.\n" +
+                                        "b.\tCaracals eat only vegetable.\n" +
+                                        "c.\tCaracals prey on their own kids.\n" +
                                         "Enter letter of correct answer: ");
                                 String answer = scanner.nextLine();
                                 while (!Objects.equals(answer, "a")) {
