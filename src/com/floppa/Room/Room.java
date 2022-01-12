@@ -3,7 +3,10 @@ package com.floppa.Room;
 import com.floppa.Entity.Enemy;
 import com.floppa.Info;
 import com.floppa.Interaction;
+import com.floppa.Items.Flower;
+import com.floppa.Items.Food;
 import com.floppa.Items.Item;
+import com.floppa.Items.Key;
 import com.floppa.Position.Pos;
 import com.floppa.WorldObject.Chest;
 import com.floppa.WorldObject.WorldObject;
@@ -137,18 +140,37 @@ public class Room implements Interaction {
     }
 
     /***
-     * Fills the Room with randomly selected and given WorldObjects.
-     * The Contents in the WorldObjects are also given and randomly selected.
-     * @param wObjects
-     * @param items
+     * Fills the Room with a Chest.
+     * The Contents in the Chest randomly selected.
      */
-    public void fill(ArrayList<WorldObject> wObjects, ArrayList<Item> items) {
-        for (WorldObject w : wObjects) {
-            Pos tmpPos = getRandomPosRoom(avoid);
-            w.addItem(items);
-            objects.put(tmpPos, w);
-            avoid.add(tmpPos);
+    public void fill(String [] itemsS) {
+        Pos tmpPos = getRandomPosRoom(avoid);
+        ArrayList<Item> items = new ArrayList<>();
+        Item item = null;
+        Chest chest = new Chest(new Info("chest", "chest"));
+        for (String s : itemsS) {
+            switch (s) {
+                case "apple" -> {
+                    item = new Food(new Info("apple", "apple"), 2, 50);
+                }
+                case "meat" -> {
+                    item = new Food(new Info("meat", "meat"), 5, 100);
+                }
+                case "flower" -> {
+                    item = new Flower(new Info("flower", "Floppa likes it!"));
+                }
+                case "key" -> {
+                    item = new Key((new Info("key", "key")));
+                }
+                case "golden key" -> {
+                    item = new Key(new Info("golden key", "golden key"));
+                }
+            }
+            items.add(item);
         }
+        chest.addItem(items);
+        objects.put(tmpPos, chest);
+        avoid.add(tmpPos);
     }
 
     /***

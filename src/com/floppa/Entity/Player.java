@@ -132,6 +132,7 @@ public class Player extends Entity {
                             System.out.println("The Enemies noticed you and starting to attack you");
                             currentEnemy.attackPlayer(this, currentRoom);
                             currentRoom.printInstruction();
+                            currentRoom.printWorldObjects();
                             if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
                                 String answer = "";
                                 while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
