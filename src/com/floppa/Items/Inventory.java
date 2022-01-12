@@ -89,14 +89,10 @@ public class Inventory {
             if (tmp != null) {
                 if (Objects.equals(item, tmp.info.getName())) {
                     return i;
-                } else {
-                    System.out.println("Object not in your Inventory");
                 }
-            } else {
-                System.out.println("Object not in your Inventory");
-                break;
             }
         }
+        System.out.println("Object not in your Inventory");
         return -1;
     }
 

@@ -31,7 +31,7 @@ public class Floppa extends Entity {
      */
     public void isStarving() {
         if (starving) {
-            System.out.println("Attention Big Floppa is starving, give him Food");
+            System.out.println("Caution, Big Floppa is starving, feed him :(");
 
         }
         if (needFoodNextRound) {
