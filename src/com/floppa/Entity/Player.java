@@ -23,7 +23,7 @@ import static java.lang.Thread.sleep;
  * Class for creating a playable Character
  */
 public class Player extends Entity {
-    private Inventory inventory = new Inventory(10);
+    private Inventory inventory = new Inventory(100);
     private Pos pos;
     private Info info;
     private Room currentRoom;
