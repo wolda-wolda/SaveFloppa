@@ -189,4 +189,8 @@ public class Entity {
     public Info getInfo() {
         return info;
     }
+
+    public void printInfo() {
+        System.out.println("Your HP: " + this.getHp() + " your level: " + this.getCurrentLevel());
+    }
 }

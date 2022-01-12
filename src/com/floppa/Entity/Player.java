@@ -23,10 +23,11 @@ import static java.lang.Thread.sleep;
  * Class for creating a playable Character
  */
 public class Player extends Entity {
-    private Inventory inventory = new Inventory(10);
+    private Inventory inventory = new Inventory(100);
     private Pos pos;
     private Info info;
     private Room currentRoom;
+    private Room startRoom;
     private Floppa floppa;
     private Enemy currentEnemy;
 
@@ -151,22 +152,36 @@ public class Player extends Entity {
                                 answer = scanner.nextLine();
                             }
                             if (Objects.equals(answer, "a")) {
-                                System.out.println("For you its clear as day light that you choose Floppas funny ears,\n" +
+                                System.out.println("\nFor you its clear as day light that you choose Floppas funny ears,\n" +
                                         "which is the right decisions\n" +
                                         "Congrats you won!!");
+                                try {
+                                    Clip clip = AudioSystem.getClip();
+                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                    sleep(2000);
+                                } catch (LineUnavailableException | InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 Credit();
                                 System.exit(0);
                             } else {
-                                System.out.println("How dare you choose the gold over Floppa's ears.\n" +
+                                System.out.println("\nHow dare you choose the gold over Floppa's ears.\n" +
                                         "He gets angry and is about to eat you.\n" +
                                         "khhhhhhhhhhhhhhhh (funny cat noises when angry)\n" +
-                                        "You didn`t stand a chance a died");
+                                        "You didn`t stand a chance a died\n");
+                                try {
+                                    Clip clip = AudioSystem.getClip();
+                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                    sleep(2000);
+                                } catch (LineUnavailableException | InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 System.exit(0);
                             }
                         }
                     }
                 } else {
-                    System.out.println("You didn't entered the room, your character Position got reset to the default Position");
+                    System.out.println("You didn't entered the room, your character Position got reset to the default Position\n");
                     this.pos = new Pos(3, 3);
                 }
             }
@@ -191,7 +206,7 @@ public class Player extends Entity {
         if (currentRoom.getRooms().get(strPos).isUnlockable()) {
             if (currentRoom.getRooms().get(strPos).isLocked()) {
                 System.out.println("You have to unlock the door first");
-                if (this.getInventory().findItem("key") != -1) {
+                if (this.getInventory().findItem("key") != -1 || this.getInventory().findItem("golden key") != -1) {
                     Item key = inventory.removeItem(this.getInventory().findItem("key"));
                     this.currentRoom.getRooms().get(strPos).unlock(key);
                     this.currentRoom = currentRoom.getRooms().get(strPos);
@@ -289,7 +304,11 @@ public class Player extends Entity {
         }
     }
 
-    public void printInfo() {
-        System.out.println("Your HP: " + this.getHp() + " your level: " + this.getCurrentLevel());
+    public void setStartRoom(Room room) {
+        this.startRoom = room;
+    }
+
+    public Room getStartRoom() {
+        return this.startRoom;
     }
 }

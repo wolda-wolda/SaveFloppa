@@ -69,18 +69,19 @@ public abstract class Menu {
                                     System.out.println("Wrong answer try again!");
                                     answer = scanner.nextLine();
                                 }
-                                System.out.println("Right answer! You got a key for the second room. Which is at position 5, 3");
+                                System.out.println("Right answer! You got a key for the second room. Which is at position 5, 3\n" +
+                                        "You are wondering what behind that door is you carefully approach it.\n");
 
                             } else if (i != null && Objects.equals(i.getInfo(), "flower")) {
                                 System.out.println("The next door opened magically");
-                                for (HashMap.Entry<String, Room> r : player1.getCurrentRoom().getRooms().entrySet()) {
-                                    if (Objects.equals(r.getValue().getInfo().getName(), "ThirdRoom") && r.getValue().isUnlockable()) {
+                                for (HashMap.Entry<String, Room> r : player1.getStartRoom().getRooms().entrySet()) {
+                                    if (Objects.equals(r.getValue().getInfo().getName(), "ThirdRoom") && !r.getValue().isUnlockable()) {
                                         r.getValue().setUnlockable();
                                     }
                                 }
                             } else if (i != null && Objects.equals(i.getInfo(), "golden key")) {
-                                for (HashMap.Entry<String, Room> r : player1.getCurrentRoom().getRooms().entrySet()) {
-                                    if (Objects.equals(r.getValue().getInfo().getName(), "FourthRoom") && r.getValue().isUnlockable()) {
+                                for (HashMap.Entry<String, Room> r : player1.getStartRoom().getRooms().entrySet()) {
+                                    if (Objects.equals(r.getValue().getInfo().getName(), "FourthRoom") && !r.getValue().isUnlockable()) {
                                         r.getValue().setUnlockable();
                                     }
                                 }
@@ -98,9 +99,19 @@ public abstract class Menu {
             case "inventory" -> player1.getInventory().print();
             case "info" -> {
                 switch (newStr[1]) {
-                    case "player" -> player1.getInfo().printInfo();
-                    case "floppa" -> player1.getFloppa().getInfo().printInfo();
-                    case "room" -> player1.getCurrentRoom().getInfo().printInfo();
+                    case "player" -> {
+                        player1.getInfo().printInfo();
+                        player1.printInfo();
+                        player1.getInventory().print();
+                    }
+                    case "floppa" -> {
+                        player1.getFloppa().getInfo().printInfo();
+                        player1.getFloppa().printInfo();
+                    }
+                    case "room" -> {
+                        player1.getCurrentRoom().getInfo().printInfo();
+                        player1.getCurrentRoom().printInfo();
+                    }
                 }
             }
             default -> {

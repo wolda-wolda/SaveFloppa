@@ -319,4 +319,8 @@ public class Room implements Interaction {
     public void setUnlockable() {
         this.unlockable = !unlockable;
     }
+
+    public void printInfo() {
+        this.printWorldObjects();
+    }
 }

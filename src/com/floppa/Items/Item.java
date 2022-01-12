@@ -8,6 +8,7 @@ import com.floppa.Info;
 public abstract class Item {
     Info info;
     private int count;
+    private boolean printable = true;
 
     /**
      * Sets the Info of the Item and its Amount to 1
@@ -50,5 +51,23 @@ public abstract class Item {
     @Override
     public String toString() {
         return "Type: " + info.getName() + " | Count: " + this.count;
+    }
+
+    /**
+     * Gives back the boolean printable
+     *
+     * @return printable
+     */
+    public boolean isPrintable() {
+        return printable;
+    }
+
+    /**
+     * sets printable to true or false
+     *
+     * @param printable
+     */
+    public void setPrintable(boolean printable) {
+        this.printable = printable;
     }
 }

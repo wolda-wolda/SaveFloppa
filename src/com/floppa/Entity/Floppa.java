@@ -15,6 +15,7 @@ public class Floppa extends Entity {
     private boolean starving = false;
     private boolean dead = false;
     private boolean needFoodNextRound = false;
+    private int starvingRounds = 0;
 
     /***
      * Set the Info
@@ -34,11 +35,13 @@ public class Floppa extends Entity {
             System.out.println("Caution, Big Floppa is starving, feed him :(");
 
         }
-        if (needFoodNextRound) {
+        if (starvingRounds == 5) {
             this.dead = true;
         } else {
-            this.needFoodNextRound = true;
-            this.starving = true;
+            if (starvingRounds == 3) {
+                this.starving = true;
+            }
+            starvingRounds++;
         }
     }
 

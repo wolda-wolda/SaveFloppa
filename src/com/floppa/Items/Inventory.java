@@ -2,6 +2,7 @@ package com.floppa.Items;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 /***
  * Class for creating an Inventory for any Object or Entity
@@ -13,6 +14,7 @@ public class Inventory {
     /**
      * Adds a given Amount of Slots to the Inventory
      * Sets the Inventory Slots to null, indicating that they are empty
+     *
      * @param size
      */
     public Inventory(int size) {
@@ -23,6 +25,7 @@ public class Inventory {
 
     /**
      * Sets an Item at a given Index
+     *
      * @param index
      * @param item
      */
@@ -32,6 +35,7 @@ public class Inventory {
 
     /**
      * Removes an Item at a given Index
+     *
      * @param index
      * @return
      */
@@ -47,6 +51,7 @@ public class Inventory {
 
     /**
      * Switches an Item at a given Index with an Item at another given Index
+     *
      * @param sIndex
      * @param tIndex
      */
@@ -67,11 +72,16 @@ public class Inventory {
     public boolean addItem(Item item) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) == null) {
+                if (item.isPrintable()) {
+                    item.setPrintable(true);
+                }
                 setItems(i, item);
                 return true;
-            } else if (Objects.equals(items.get(i).getInfo(), item.getInfo())) {
+            }
+            if (Objects.equals(items.get(i).getInfo(), item.getInfo())) {
                 items.get(i).incrementCount();
-                return true;
+                item.setPrintable(false);
+                item.incrementCount();
             }
         }
         return false;
@@ -102,7 +112,7 @@ public class Inventory {
     public void print() {
         int count = 0;
         for (Item x : items) {
-            if(x != null) {
+            if (x != null && x.isPrintable()) {
                 count++;
                 System.out.println(count + ": " + x);
             }
