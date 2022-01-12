@@ -5,6 +5,7 @@ import com.floppa.Entity.Player;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
+import com.floppa.exception.userInputExcepetion;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -102,7 +103,13 @@ public abstract class Menu {
                     case "room" -> player1.getCurrentRoom().getInfo().printInfo();
                 }
             }
-            default -> System.out.println("Command not recognised! Need help? Use the help command if you want to return to Main Menu use the menu command");
+            default -> {
+                try {
+                    throw new userInputExcepetion();
+                } catch (userInputExcepetion e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

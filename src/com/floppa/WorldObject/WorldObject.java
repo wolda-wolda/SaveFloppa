@@ -3,6 +3,7 @@ package com.floppa.WorldObject;
 import com.floppa.Info;
 import com.floppa.Interaction;
 import com.floppa.Items.Item;
+import com.floppa.exception.isEmptyException;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class WorldObject implements Interaction {
      */
     @Override
     public Item open() {
-        if(!open) {
+        if (!open) {
             if (content.size() > 0) {
                 return content.remove(0);
             } else {
@@ -36,7 +37,11 @@ public class WorldObject implements Interaction {
                 return null;
             }
         }
-        System.out.println("This Container has already been opened. It's empty");
+        try {
+            throw new isEmptyException();
+        } catch (isEmptyException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

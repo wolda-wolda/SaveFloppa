@@ -7,6 +7,7 @@ import com.floppa.Items.Item;
 import com.floppa.Menu.SoundPlayer;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
+import com.floppa.exception.wallException;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -171,7 +172,11 @@ public class Player extends Entity {
             }
             currentRoom.hasWorldObjectAt(pos);
         } else {
-            System.out.println("Wand");
+            try {
+                throw new wallException();
+            } catch (wallException e) {
+                e.printStackTrace();
+            }
         }
 
     }
