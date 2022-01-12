@@ -4,6 +4,7 @@ import com.floppa.Info;
 import com.floppa.Items.Food;
 import com.floppa.Items.Inventory;
 import com.floppa.Items.Item;
+import com.floppa.Menu.Credits;
 import com.floppa.Menu.SoundPlayer;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static com.floppa.Menu.Credits.Credit;
 import static com.floppa.Menu.Menu.Menu;
 import static java.lang.Thread.sleep;
 
@@ -149,6 +151,8 @@ public class Player extends Entity {
                                     System.out.println("For you its clear as day light that you choose Floppas funny ears,\n" +
                                             "which is the right decisions\n" +
                                             "Congrats you won!!");
+                                    Credit();
+                                    System.exit(0);
                                 } else {
                                     System.out.println("How dare you choose the gold over Floppa's ears.\n" +
                                             "He gets angry and is about to eat you.\n" +
