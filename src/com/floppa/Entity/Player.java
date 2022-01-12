@@ -175,7 +175,8 @@ public class Player extends Entity {
             try {
                 throw new wallException();
             } catch (wallException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
+
             }
         }
 

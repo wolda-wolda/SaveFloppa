@@ -19,6 +19,10 @@ import static com.floppa.Menu.Menu.Menu;
 
 public class Main {
     public static void main(String[] args) {
+        start();
+    }
+
+    private static void start() {
         System.out.println("Welcome to Epic save floppa game");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello player, please tell me your name:");
@@ -60,7 +64,7 @@ public class Main {
         room.addRoom(new Pos(5, 3), new Room(new Info("SecondRoom", "IDK"), true, "In this room is a chaos. You picked up the empty basket.\nAdd Big Floppa’s food and toys in it.\nAnd especially flowers because Floppa loves flowers.", true));
         room.addRoom(new Pos(0, 3), new Room(new Info("ThirdRoom", "IDK"), true, "Big Floppa didn’t eat since a few days. Feed him. With the meat you found earlier\n", false));
         room.addRoom(new Pos(3, 5), new Room(new Info("FourthRoom", "IDK"), true, "After entering the last room, you finally see the villain who stole Floppa's flopps.\nFight him!", false));
-        String [] tmp = {"apple", "key"};
+        String[] tmp = {"apple", "key"};
         room.fill(tmp);
 
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
@@ -69,11 +73,11 @@ public class Main {
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
             switch (r.getValue().getInfo().getName()) {
                 case "SecondRoom" -> {
-                    String [] tmp1 = {"apple", "meat", "flower"};
+                    String[] tmp1 = {"apple", "meat", "flower"};
                     r.getValue().fill(tmp1);
                 }
                 case "ThirdRoom" -> {
-                    String [] tmp1 = {"apple", "meat", "golden key"};
+                    String[] tmp1 = {"apple", "meat", "golden key"};
                     r.getValue().fill(tmp1);
                 }
             }

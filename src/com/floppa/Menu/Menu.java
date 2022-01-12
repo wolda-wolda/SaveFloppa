@@ -107,7 +107,7 @@ public abstract class Menu {
                 try {
                     throw new userInputExcepetion();
                 } catch (userInputExcepetion e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
                 }
             }
         }

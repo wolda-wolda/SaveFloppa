@@ -25,6 +25,7 @@ public class WorldObject implements Interaction {
 
     /**
      * Opens the Object and returns its Content
+     *
      * @return
      */
     @Override
@@ -40,7 +41,7 @@ public class WorldObject implements Interaction {
         try {
             throw new isEmptyException();
         } catch (isEmptyException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return null;
     }
