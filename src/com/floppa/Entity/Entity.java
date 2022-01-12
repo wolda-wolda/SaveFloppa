@@ -174,6 +174,11 @@ public class Entity {
         this.currentLevel = currentLevel;
     }
 
+    /**
+     * Retyrn Info
+     *
+     * @return
+     */
     public Info getInfo() {
         return info;
     }

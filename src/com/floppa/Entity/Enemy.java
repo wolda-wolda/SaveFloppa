@@ -22,6 +22,12 @@ public class Enemy extends Entity {
         this.setCurrentLevel(level);
     }
 
+    /**
+     * Removes Player HP based on the level
+     * Plays sounds
+     * @param player
+     * @param currentRoom
+     */
     public void attackPlayer(Player player, Room currentRoom) {
         SoundPlayer soundPlayer = new SoundPlayer();
         while (player.getHp() > 0 && currentRoom.getEnemies().size() > 0) {

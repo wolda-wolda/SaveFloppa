@@ -229,10 +229,20 @@ public class Room implements Interaction {
         return info;
     }
 
+    /**
+     * Return the enemies
+     *
+     * @return
+     */
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     * Add a given Amount of Enemies with a given Level to the Room
+     * @param count
+     * @param level
+     */
     public void addEnemy(int count, int level) {
         Info defaultInfo = new Info("NPC Enemy", "Attacks Player and Floppa");
         for (int i = 0; i < count; i++) {
@@ -240,20 +250,35 @@ public class Room implements Interaction {
         }
     }
 
+    /**
+     * Remove an Enemy from the World and display a Kill Message
+     */
     public void removeEnemy() {
         System.out.println("You killed an Enemy still " + (enemies.size() - 1) + " Enemies left");
         enemies.remove(0);
     }
 
+    /**
+     * Return the Locked Status of the Room
+     * @return
+     */
     public boolean isLocked() {
         return locked;
     }
 
+    /**
+     * Opens the Room
+     * @return
+     */
     @Override
     public Item open() {
         return null;
     }
 
+    /**
+     * Unlock the Room using a Key
+     * @param key
+     */
     @Override
     public void unlock(Item key) {
         if (this.locked) {

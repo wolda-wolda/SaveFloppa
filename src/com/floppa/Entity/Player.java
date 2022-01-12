@@ -236,6 +236,10 @@ public class Player extends Entity {
         return false;
     }
 
+    /**
+     * Set the current Room in which the Player is
+     * @param currentRoom
+     */
     public void setCurrentRoom(String currentRoom) {
         for (Map.Entry<String, Room> room : this.currentRoom.getRooms().entrySet()) {
             if (Objects.equals(room.getValue().getInfo().getName(), currentRoom)) {
