@@ -99,6 +99,13 @@ public class Entity {
     public void levelUp(Player player, String part3) {
         var tmp = player.depositFood(part3);
         if (tmp != null) {
+            if (this.hp < 100) {
+                this.hp += tmp.getHp();
+                if (this.hp > 100) {
+                    this.hp = 100;
+                }
+                System.out.println("You ate something " + tmp.getInfo() + " you regained your HP to: " + this.hp);
+            }
             this.curXP += tmp.getStrength();
             checkCurrentXP();
         }

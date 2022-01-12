@@ -108,67 +108,72 @@ public class Player extends Entity {
             this.pos = pos;
             if (currentRoom.hasDoorAt(pos)) {
                 String strPos = currentRoom.keyToString(pos);
-                if (currentRoom.getRooms().get(strPos).getEnemies().size() > 0) {
+                Room tmp = currentRoom;
+                String answer1 = "yes";
+                if (tmp.getRooms().get(strPos).getEnemies().size() > 0) {
                     System.out.println("Attention! Enemies are in this Room they will attack you! Are you sure you want to enter this Room? Yes or No");
-                    if (Objects.equals(scanner.nextLine().toLowerCase(), "yes")) {
-                        if (switchRoom(strPos)) {
-                            System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
-                            this.pos = new Pos(3, 3);
+                    answer1 = scanner.nextLine().toLowerCase();
+                }
+                if (Objects.equals(answer1, "yes")) {
+                    if (switchRoom(strPos)) {
+                        System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
+                        this.pos = new Pos(3, 3);
 
-                            if (this.floppa.isDead()) {
-                                System.out.println("Your Floppa died: GAME OVER");
-                                try {
-                                    Clip clip = AudioSystem.getClip();
-                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
-                                    sleep(2000);
-                                } catch (LineUnavailableException | InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                System.exit(0);
-                            } else {
-                                this.floppa.isStarving();
+                        if (this.floppa.isDead()) {
+                            System.out.println("Your Floppa died: GAME OVER");
+                            try {
+                                Clip clip = AudioSystem.getClip();
+                                soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                sleep(2000);
+                            } catch (LineUnavailableException | InterruptedException e) {
+                                e.printStackTrace();
                             }
-
+                            System.exit(0);
+                        } else {
+                            this.floppa.isStarving();
+                        }
+                        if (tmp.getRooms().get(strPos).getEnemies().size() > 0) {
                             System.out.println("The Enemies noticed you and starting to attack you");
                             currentEnemy.attackPlayer(this, currentRoom);
-                            currentRoom.printInstruction();
-                            currentRoom.printWorldObjects();
-                            if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
-                                String answer = "";
-                                while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
-                                    System.out.println("Congrats you successfully defeated Pax.\n" +
-                                            "You found Floppa's funny ears, his flops.\n" +
-                                            "You notice something shiny in the corner its a stack of gold.\n" +
-                                            "Choose beetween Floppa and the Gold:" +
-                                            "a) Floppa\n" +
-                                            "b) Gold\n");
-                                    answer = scanner.nextLine();
-                                }
-                                if (Objects.equals(answer, "a")) {
-                                    System.out.println("For you its clear as day light that you choose Floppas funny ears,\n" +
-                                            "which is the right decisions\n" +
-                                            "Congrats you won!!");
-                                    Credit();
-                                    System.exit(0);
-                                } else {
-                                    System.out.println("How dare you choose the gold over Floppa's ears.\n" +
-                                            "He gets angry and is about to eat you.\n" +
-                                            "khhhhhhhhhhhhhhhh (funny cat noises when angry)\n" +
-                                            "You didn`t stand a chance a died");
-                                    System.exit(0);
-                                }
+                        }
+                        currentRoom.printInstruction();
+                        currentRoom.printWorldObjects();
+                        if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
+                            String answer = "";
+                            while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
+                                System.out.println("Congrats you successfully defeated Pax.\n" +
+                                        "You found Floppa's funny ears, his flops.\n" +
+                                        "You notice something shiny in the corner its a stack of gold.\n" +
+                                        "Choose beetween Floppa and the Gold:" +
+                                        "a) Floppa\n" +
+                                        "b) Gold\n");
+                                answer = scanner.nextLine();
+                            }
+                            if (Objects.equals(answer, "a")) {
+                                System.out.println("For you its clear as day light that you choose Floppas funny ears,\n" +
+                                        "which is the right decisions\n" +
+                                        "Congrats you won!!");
+                                Credit();
+                                System.exit(0);
+                            } else {
+                                System.out.println("How dare you choose the gold over Floppa's ears.\n" +
+                                        "He gets angry and is about to eat you.\n" +
+                                        "khhhhhhhhhhhhhhhh (funny cat noises when angry)\n" +
+                                        "You didn`t stand a chance a died");
+                                System.exit(0);
                             }
                         }
-                    } else {
-                        System.out.println("You didn't entered the room, your character Position got reset to the default Position");
-                        this.pos = new Pos(3, 3);
                     }
+                } else {
+                    System.out.println("You didn't entered the room, your character Position got reset to the default Position");
+                    this.pos = new Pos(3, 3);
                 }
             }
             currentRoom.hasWorldObjectAt(pos);
         } else {
             System.out.println("Wand");
         }
+
     }
 
     /***
@@ -190,7 +195,9 @@ public class Player extends Entity {
                         case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
                         case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
                     }
-                    currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+                    if (currentRoom.getEnemies().size() > 0) {
+                        currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+                    }
                     return true;
                 } else {
                     System.out.println("You have to find the key for this room first! Hint: Search for chests in other rooms");
@@ -206,7 +213,9 @@ public class Player extends Entity {
                 case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
                 case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
             }
-            currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+            if (currentRoom.getEnemies().size() > 0) {
+                currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+            }
             return true;
         }
         System.out.println("This Room is locked for now");
