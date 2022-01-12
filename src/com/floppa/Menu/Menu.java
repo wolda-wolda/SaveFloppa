@@ -102,7 +102,7 @@ public abstract class Menu {
                     case "room" -> player1.getCurrentRoom().getInfo().printInfo();
                 }
             }
-            default -> System.out.println("Command not recognised! Need help? Use the help command");
+            default -> System.out.println("Command not recognised! Need help? Use the help command if you want to return to Main Menu use the menu command");
         }
     }
 }

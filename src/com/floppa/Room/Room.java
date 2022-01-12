@@ -23,8 +23,7 @@ public class Room implements Interaction {
     private Pos max = new Pos(5, 5);
     private boolean locked;
     private boolean unlockable;
-    private String question;
-    private String answer;
+    private String instruction;
 
     /***
      * Takes the parameter Info which contains the name and description of the room
@@ -32,11 +31,10 @@ public class Room implements Interaction {
      * Worldobjects should not spawn
      * @param info
      */
-    public Room(Info info, boolean locked, String question, String answer, boolean unlockable) {
+    public Room(Info info, boolean locked, String instruction, boolean unlockable) {
         this.info = info;
         this.locked = locked;
-        this.question = question;
-        this.answer = answer;
+        this.instruction = instruction;
         this.unlockable = unlockable;
         avoid.add(new Pos(0, 3));
         avoid.add(new Pos(3, 0));
@@ -288,17 +286,8 @@ public class Room implements Interaction {
         }
     }
 
-    public void printQuestion() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(question);
-        if (answer != null) {
-            String x = scanner.nextLine();
-            while (!Objects.equals(x, answer)) {
-                System.out.println("Wrong answer please try again!");
-                x = scanner.nextLine();
-            }
-            System.out.println("Correct answer");
-        }
+    public void printInstruction() {
+        System.out.println(instruction);
     }
 
     public boolean isUnlockable() {

@@ -19,12 +19,15 @@ import static com.floppa.Menu.Menu.Menu;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Epic save floppa game have fun :D");
+        System.out.println("Welcome to Epic save floppa game");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Hello player, please tell me your name:");
+        String name = scanner.nextLine();
+        System.out.println("Hello " + name + " have fun :D");
         String ch = "";
-        Room room = new Room(new Info("StartRoom", "IDK"), false, "", "", true);
+        Room room = new Room(new Info("StartRoom", "IDK"), false, "", true);
         Floppa floppa = new Floppa(new Info("Big Floppa", "Angy when sees Bri ish 'person'"));
-        Player player1 = new Player(new Info("Kimran Saur", "Must protect Floppa"), room, floppa);
+        Player player1 = new Player(new Info(name, "Must retreive Floppas ear"), room, floppa);
 
 
         addStartingArea(room);
@@ -54,26 +57,11 @@ public class Main {
         ArrayList<Item> allItems = new ArrayList<>();
         allItems.add(new Food(new Info("apple", "apple"), 2, 50));
         allItems.add(new Key(new Info("key", "unlocks doors")));
-        room.addRoom(new Pos(5, 3), new Room(new Info("SecondRoom", "IDK"), true, "In this room is a chaos. You picked up the empty basket.\nAdd Big Floppa’s food and toys in it.\nAnd especially flowers because Floppa loves flowers.", null, true));
-        room.addRoom(new Pos(0, 3), new Room(new Info("ThirdRoom", "IDK"), true, "Big Floppa didn’t eat since a few days. Feed him. With the meat you found earlier\n", null, false));
-        room.addRoom(new Pos(3, 5), new Room(new Info("ForuthRoom", "IDK"), true, "After entering the last room, you finally see the villain who stole Floppa's flopps.\nFight him!", "a", false));
+        room.addRoom(new Pos(5, 3), new Room(new Info("SecondRoom", "IDK"), true, "In this room is a chaos. You picked up the empty basket.\nAdd Big Floppa’s food and toys in it.\nAnd especially flowers because Floppa loves flowers.", true));
+        room.addRoom(new Pos(0, 3), new Room(new Info("ThirdRoom", "IDK"), true, "Big Floppa didn’t eat since a few days. Feed him. With the meat you found earlier\n", false));
+        room.addRoom(new Pos(3, 5), new Room(new Info("FourthRoom", "IDK"), true, "After entering the last room, you finally see the villain who stole Floppa's flopps.\nFight him!", false));
         room.fill(allWorldObjects, allItems);
 
-        /*for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
-            allItems.clear();
-            switch (r.getValue().getInfo().getName()) {
-                case "SecondRoom" -> {
-                    allItems.add(new Flower(new Info("flower", "floppa loves them")));
-                    allItems.add(new Food(new Info("meat", "meat tastes good"), 5, 100));
-                    r.getValue().fill(allWorldObjects, allItems);
-                }
-                case "ThirdRoom" -> {
-                    allItems.add(new Key(new Info("key", "golden key")));
-                    r.getValue().fill(allWorldObjects, allItems);
-                }
-            }
-        }
-         */
         for (HashMap.Entry<String, Room> r : room.getRooms().entrySet()) {
             r.getValue().addEnemy(enemies++, level++);
         }

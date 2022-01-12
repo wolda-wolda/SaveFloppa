@@ -9,6 +9,7 @@ public class Info {
 
     /**
      * Sets the Name and Description
+     *
      * @param name
      * @param description
      */
@@ -26,6 +27,7 @@ public class Info {
 
     /**
      * Returns the Name
+     *
      * @return
      */
     public String getName() {
@@ -38,5 +40,9 @@ public class Info {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

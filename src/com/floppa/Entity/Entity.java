@@ -117,7 +117,7 @@ public class Entity {
                 if (this.hp > 100) {
                     this.hp = 100;
                 }
-                System.out.println("Erfolgreich " + tmp.getInfo() + " hat HP von " + this.hp);
+                System.out.println("You eated something " + tmp.getInfo() + " you regained your HP to: " + this.hp);
             }
         }
     }

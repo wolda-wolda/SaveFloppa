@@ -4,7 +4,6 @@ import com.floppa.Info;
 import com.floppa.Items.Food;
 import com.floppa.Items.Inventory;
 import com.floppa.Items.Item;
-import com.floppa.Menu.Credits;
 import com.floppa.Menu.SoundPlayer;
 import com.floppa.Position.Pos;
 import com.floppa.Room.Room;
@@ -12,13 +11,11 @@ import com.floppa.Room.Room;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
 import static com.floppa.Menu.Credits.Credit;
-import static com.floppa.Menu.Menu.Menu;
 import static java.lang.Thread.sleep;
 
 /***
@@ -45,7 +42,6 @@ public class Player extends Entity {
         this.pos = new Pos(3, 3);
         this.currentRoom = room;
         this.floppa = floppa;
-        this.inventory.addItem(new Food(new Info("apple", "ssf"), 10, 10));
     }
 
     /***
@@ -117,7 +113,6 @@ public class Player extends Entity {
                     if (Objects.equals(scanner.nextLine().toLowerCase(), "yes")) {
                         if (switchRoom(strPos)) {
                             System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
-                            currentRoom.printQuestion();
                             this.pos = new Pos(3, 3);
 
                             if (this.floppa.isDead()) {
@@ -136,6 +131,7 @@ public class Player extends Entity {
 
                             System.out.println("The Enemies noticed you and starting to attack you");
                             currentEnemy.attackPlayer(this, currentRoom);
+                            currentRoom.printInstruction();
                             if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
                                 String answer = "";
                                 while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
@@ -277,7 +273,7 @@ public class Player extends Entity {
         }
     }
 
-    public void fight() {
-
+    public void printInfo() {
+        System.out.println("Your HP: " + this.getHp() + " your level: " + this.getCurrentLevel());
     }
 }

@@ -16,6 +16,7 @@ public class SaveGame {
             prop.setProperty("hp", String.valueOf(player.getHp()));
             prop.setProperty("pos", player.getPosString());
             prop.setProperty("room", player.getCurrentRoom().getInfo().getName());
+            prop.setProperty("name", player.getInfo().getName());
 
             // save properties to project root folder
             prop.store(output, null);
@@ -41,6 +42,7 @@ public class SaveGame {
             player1.setCurXP(Integer.parseInt(prop.getProperty("XP")));
             player1.setCurrentRoom(prop.getProperty("room"));
             player1.stringToKey(prop.getProperty("pos"));
+            player1.getInfo().setName(prop.getProperty("name"));
 
             System.out.println("Successfully loaded your savegame");
 
