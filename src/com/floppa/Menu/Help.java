@@ -17,8 +17,7 @@ public abstract class Help {
         System.out.println("###########################################");
         System.out.println("Available Commands:");
         System.out.println("Movement: Press W, A, S, D");
-        System.out.println("Leveling Up: Feed Player/Floppa FoodItem");
-        System.out.println("Heal: Heal Player/Floppa FoodItem");
+        System.out.println("Leveling Up + Heal: Eat Player/Floppa FoodItem");
         System.out.println("Save/Load Game: Save/Load");
         System.out.println("Open: Opens WorldObject");
         System.out.println("Menu: Opens main menu");

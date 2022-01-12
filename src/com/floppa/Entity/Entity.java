@@ -81,7 +81,7 @@ public class Entity {
     public void performLevelUp() {
         SoundPlayer soundPlayer = new SoundPlayer();
         System.out.println(" #############################");
-        System.out.println(" # Neues Level erreicht " + (++currentLevel) + "!   # ");
+        System.out.println(" # Reached new level " + (++currentLevel) + "!      # ");
         System.out.println(" #############################");
         try {
             Clip clip = AudioSystem.getClip();
@@ -104,8 +104,9 @@ public class Entity {
                 if (this.hp > 100) {
                     this.hp = 100;
                 }
-                System.out.println("You ate something " + tmp.getInfo() + " you regained your HP to: " + this.hp);
+                System.out.println("you regained your HP to: " + this.hp);
             }
+            System.out.println("You ate: " + tmp.getInfo());
             this.curXP += tmp.getStrength();
             checkCurrentXP();
         }
@@ -116,18 +117,6 @@ public class Entity {
      * @param player
      * @param part3
      */
-    public void heal(Player player, String part3) {
-        var tmp = player.depositFood(part3);
-        if (tmp != null) {
-            if (this.hp < 100) {
-                this.hp += tmp.getHp();
-                if (this.hp > 100) {
-                    this.hp = 100;
-                }
-                System.out.println("You ate something " + tmp.getInfo() + " you regained your HP to: " + this.hp);
-            }
-        }
-    }
 
     /***
      * Return the Entity's HP

@@ -28,7 +28,7 @@ public abstract class MainMenu {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        //soundPlayer.playSound(clip, "/src/Config/Briish.wav");
+        soundPlayer.playSound(clip, "/src/Config/winner.wav", true);
 
         System.out.println();
         System.out.println("##################");

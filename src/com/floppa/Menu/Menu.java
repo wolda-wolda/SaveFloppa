@@ -37,16 +37,10 @@ public abstract class Menu {
             }
             case "save" -> SaveGame.saveGame(player1);
             case "load" -> SaveGame.loadGame(player1);
-            case "feed" -> {
+            case "eat" -> {
                 switch (newStr[1]) {
                     case "floppa" -> player1.getFloppa().levelUp(player1, newStr[2]);
                     case "player" -> player1.levelUp(player1, newStr[2]);
-                }
-            }
-            case "heal" -> {
-                switch (newStr[1]) {
-                    case "floppa" -> player1.getFloppa().heal(player1, newStr[2]);
-                    case "player" -> player1.heal(player1, newStr[2]);
                 }
             }
             case "open" -> {

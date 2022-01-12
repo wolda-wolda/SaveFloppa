@@ -143,7 +143,7 @@ public class Room implements Interaction {
      * Fills the Room with a Chest.
      * The Contents in the Chest randomly selected.
      */
-    public void fill(String [] itemsS) {
+    public void fill(String[] itemsS) {
         Pos tmpPos = getRandomPosRoom(avoid);
         ArrayList<Item> items = new ArrayList<>();
         Item item = null;
@@ -260,6 +260,7 @@ public class Room implements Interaction {
 
     /**
      * Add a given Amount of Enemies with a given Level to the Room
+     *
      * @param count
      * @param level
      */
@@ -280,6 +281,7 @@ public class Room implements Interaction {
 
     /**
      * Return the Locked Status of the Room
+     *
      * @return
      */
     public boolean isLocked() {
@@ -288,6 +290,7 @@ public class Room implements Interaction {
 
     /**
      * Opens the Room
+     *
      * @return
      */
     @Override
@@ -297,6 +300,7 @@ public class Room implements Interaction {
 
     /**
      * Unlock the Room using a Key
+     *
      * @param key
      */
     @Override
@@ -320,7 +324,15 @@ public class Room implements Interaction {
         this.unlockable = !unlockable;
     }
 
+    /**
+     * a method to print some infos about the room
+     */
     public void printInfo() {
         this.printWorldObjects();
+        System.out.println("There are exists at: ");
+        for (Map.Entry<String, Room> r : this.getRooms().entrySet()) {
+            System.out.print("[" + r.getKey() + "]" + "\t");
+        }
+        System.out.println();
     }
 }

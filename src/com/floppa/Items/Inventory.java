@@ -43,6 +43,13 @@ public class Inventory {
         if (items.size() > 0) {
             var tmp = items.get(index);
             items.set(index, null);
+            for (Item item : items) {
+                if (item != null && Objects.equals(tmp.getInfo(), item.getInfo())) {
+                    item.setPrintable(true);
+                    item.decrementCount();
+                    break;
+                }
+            }
             System.out.println("Item removed");
             return tmp;
         }

@@ -126,7 +126,7 @@ public class Player extends Entity {
                             try {
                                 Clip clip = AudioSystem.getClip();
                                 soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
-                                sleep(2000);
+                                sleep(3000);
                             } catch (LineUnavailableException | InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -142,13 +142,33 @@ public class Player extends Entity {
                         currentRoom.printWorldObjects();
                         if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
                             String answer = "";
+                            for (int i = 0; i < 4; i++) {
+                                if (getHp() == 0) {
+                                    System.out.println("You died so bad! Game Over");
+                                    try {
+                                        Clip clip = AudioSystem.getClip();
+                                        soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                        sleep(3000);
+                                    } catch (LineUnavailableException | InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                try {
+                                    sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                this.setHp(getHp() - 1);
+                                System.out.println("Fighting against Pax, HP left: " + this.getHp());
+                            }
+
                             while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
                                 System.out.println("Congrats you successfully defeated Pax.\n" +
                                         "You found Floppa's funny ears, his flops.\n" +
                                         "You notice something shiny in the corner its a stack of gold.\n" +
-                                        "Choose beetween Floppa and the Gold:" +
+                                        "Choose beetween Floppa and the Gold:\n" +
                                         "a) Floppa\n" +
-                                        "b) Gold\n");
+                                        "b) Gold");
                                 answer = scanner.nextLine();
                             }
                             if (Objects.equals(answer, "a")) {
@@ -157,12 +177,19 @@ public class Player extends Entity {
                                         "Congrats you won!!");
                                 try {
                                     Clip clip = AudioSystem.getClip();
-                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
-                                    sleep(2000);
+                                    soundPlayer.playSound(clip, "/src/Config/congrats.wav", false);
+                                    sleep(7000);
+                                    clip.close();
+                                    soundPlayer.playSound(clip, "/src/Config/winner.wav", true);
                                 } catch (LineUnavailableException | InterruptedException e) {
                                     e.printStackTrace();
                                 }
                                 Credit();
+                                try {
+                                    sleep(10000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 System.exit(0);
                             } else {
                                 System.out.println("\nHow dare you choose the gold over Floppa's ears.\n" +
@@ -172,7 +199,7 @@ public class Player extends Entity {
                                 try {
                                     Clip clip = AudioSystem.getClip();
                                     soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
-                                    sleep(2000);
+                                    sleep(3000);
                                 } catch (LineUnavailableException | InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -207,7 +234,12 @@ public class Player extends Entity {
             if (currentRoom.getRooms().get(strPos).isLocked()) {
                 System.out.println("You have to unlock the door first");
                 if (this.getInventory().findItem("key") != -1 || this.getInventory().findItem("golden key") != -1) {
-                    Item key = inventory.removeItem(this.getInventory().findItem("key"));
+                    Item key = null;
+                    if (this.getInventory().findItem("key") != -1) {
+                        key = inventory.removeItem(this.getInventory().findItem("key"));
+                    } else if (this.getInventory().findItem("golden key") != -1) {
+                        key = inventory.removeItem(this.getInventory().findItem("golden key"));
+                    }
                     this.currentRoom.getRooms().get(strPos).unlock(key);
                     this.currentRoom = currentRoom.getRooms().get(strPos);
                     switch (strPos) {
