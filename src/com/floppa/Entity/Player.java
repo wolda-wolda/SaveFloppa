@@ -11,6 +11,7 @@ import com.floppa.Room.Room;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -133,6 +134,29 @@ public class Player extends Entity {
 
                             System.out.println("The Enemies noticed you and starting to attack you");
                             currentEnemy.attackPlayer(this, currentRoom);
+                            if (Objects.equals(this.currentRoom.getInfo().getName(), "FourthRoom")) {
+                                String answer = "";
+                                while (!Objects.equals(answer, "a") && !Objects.equals(answer, "b")) {
+                                    System.out.println("Congrats you successfully defeated Pax.\n" +
+                                            "You found Floppa's funny ears, his flops.\n" +
+                                            "You notice something shiny in the corner its a stack of gold.\n" +
+                                            "Choose beetween Floppa and the Gold:" +
+                                            "a) Floppa\n" +
+                                            "b) Gold\n");
+                                    answer = scanner.nextLine();
+                                }
+                                if (Objects.equals(answer, "a")) {
+                                    System.out.println("For you its clear as day light that you choose Floppas funny ears,\n" +
+                                            "which is the right decisions\n" +
+                                            "Congrats you won!!");
+                                } else {
+                                    System.out.println("How dare you choose the gold over Floppa's ears.\n" +
+                                            "He gets angry and is about to eat you.\n" +
+                                            "khhhhhhhhhhhhhhhh (funny cat noises when angry)\n" +
+                                            "You didn`t stand a chance a died");
+                                    System.exit(0);
+                                }
+                            }
                         }
                     } else {
                         System.out.println("You didn't entered the room, your character Position got reset to the default Position");
@@ -238,6 +262,7 @@ public class Player extends Entity {
 
     /**
      * Set the current Room in which the Player is
+     *
      * @param currentRoom
      */
     public void setCurrentRoom(String currentRoom) {
