@@ -4,7 +4,9 @@ import Config.SaveGame.SaveGame;
 import com.floppa.Entity.Player;
 import com.floppa.Items.Item;
 import com.floppa.Position.Pos;
+import com.floppa.Room.Room;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -15,6 +17,8 @@ import static com.floppa.Menu.MainMenu.mainMenu;
  * Class for implementing the in-game Menu
  */
 public abstract class Menu {
+    private boolean asked;
+
     /***
      * Handles Player Input
      */
@@ -64,7 +68,21 @@ public abstract class Menu {
                                     System.out.println("Wrong answer try again!");
                                     answer = scanner.nextLine();
                                 }
-                                System.out.println("Right answer! You got a key for the second room. Which is at position 3,5");
+                                System.out.println("Right answer! You got a key for the second room. Which is at position 5, 3");
+
+                            } else if (i != null && Objects.equals(i.getInfo(), "flower")) {
+                                System.out.println("The next door opened magically");
+                                for (HashMap.Entry<String, Room> r : player1.getCurrentRoom().getRooms().entrySet()) {
+                                    if (Objects.equals(r.getValue().getInfo().getName(), "ThirdRoom") && r.getValue().isUnlockable()) {
+                                        r.getValue().setUnlockable();
+                                    }
+                                }
+                            } else if (i != null && Objects.equals(i.getInfo(), "golden key")) {
+                                for (HashMap.Entry<String, Room> r : player1.getCurrentRoom().getRooms().entrySet()) {
+                                    if (Objects.equals(r.getValue().getInfo().getName(), "FourthRoom") && r.getValue().isUnlockable()) {
+                                        r.getValue().setUnlockable();
+                                    }
+                                }
                             }
                         }
                         player1.getInventory().print();

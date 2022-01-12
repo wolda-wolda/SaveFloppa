@@ -114,6 +114,7 @@ public class Player extends Entity {
                     if (Objects.equals(scanner.nextLine().toLowerCase(), "yes")) {
                         if (switchRoom(strPos)) {
                             System.out.println("Entered room at " + pos.getX() + ", " + pos.getY());
+                            currentRoom.printQuestion();
                             this.pos = new Pos(3, 3);
 
                             if (this.floppa.isDead()) {
@@ -151,36 +152,40 @@ public class Player extends Entity {
      */
     public boolean switchRoom(String strPos) {
         Room tmp = currentRoom;
-        if (currentRoom.getRooms().get(strPos).isLocked()) {
-            System.out.println("You have to unlock the door first");
-            if (this.getInventory().findItem("key") != -1) {
-                Item key = inventory.removeItem(this.getInventory().findItem("key"));
-                this.currentRoom.getRooms().get(strPos).unlock(key);
-                this.currentRoom = currentRoom.getRooms().get(strPos);
-                switch (strPos) {
-                    case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
-                    case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
-                    case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
-                    case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+        if (currentRoom.getRooms().get(strPos).isUnlockable()) {
+            if (currentRoom.getRooms().get(strPos).isLocked()) {
+                System.out.println("You have to unlock the door first");
+                if (this.getInventory().findItem("key") != -1) {
+                    Item key = inventory.removeItem(this.getInventory().findItem("key"));
+                    this.currentRoom.getRooms().get(strPos).unlock(key);
+                    this.currentRoom = currentRoom.getRooms().get(strPos);
+                    switch (strPos) {
+                        case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
+                        case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
+                        case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
+                        case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+                    }
+                    currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+                    return true;
+                } else {
+                    System.out.println("You have to find the key for this room first! Hint: Search for chests in other rooms");
+                    applyPos(new Pos(3, 3));
+                    System.out.println("Position reset");
+                    return false;
                 }
-                currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
-                return true;
-            } else {
-                System.out.println("You have to find the key for this room first! Hint: Search for chests in other rooms");
-                applyPos(new Pos(3, 3));
-                System.out.println("Position reset");
-                return false;
             }
+            this.currentRoom = currentRoom.getRooms().get(strPos);
+            switch (strPos) {
+                case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
+                case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
+                case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
+                case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
+            }
+            currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
+            return true;
         }
-        this.currentRoom = currentRoom.getRooms().get(strPos);
-        switch (strPos) {
-            case "5,3" -> currentRoom.addRoom(currentRoom.stringToKey("0,3"), tmp);
-            case "3,5" -> currentRoom.addRoom(currentRoom.stringToKey("3,0"), tmp);
-            case "0,3" -> currentRoom.addRoom(currentRoom.stringToKey("5,3"), tmp);
-            case "3,0" -> currentRoom.addRoom(currentRoom.stringToKey("3,5"), tmp);
-        }
-        currentEnemy = currentRoom.getEnemies().get(currentRoom.getEnemies().size() - 1);
-        return true;
+        System.out.println("This Room is locked for now");
+        return false;
     }
 
     /***
