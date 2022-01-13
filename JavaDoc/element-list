@@ -1,5 +1,6 @@
 com.floppa
 com.floppa.Entity
+com.floppa.exception
 com.floppa.Items
 com.floppa.Menu
 com.floppa.Position

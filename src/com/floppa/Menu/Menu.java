@@ -31,7 +31,7 @@ public abstract class Menu {
             case "s" -> player1.applyPos(player1.getPos().setPos(player1.getPos().getX(), player1.getPos().getY() - 1));
             case "a" -> player1.applyPos(player1.getPos().setPos(player1.getPos().getX() - 1, player1.getPos().getY()));
             case "d" -> player1.applyPos(player1.getPos().setPos(player1.getPos().getX() + 1, player1.getPos().getY()));
-            case "Exit" -> {
+            case "exit" -> {
                 System.out.println("You closed the game");
                 System.exit(0);
             }
@@ -41,6 +41,13 @@ public abstract class Menu {
                 switch (newStr[1]) {
                     case "floppa" -> player1.getFloppa().levelUp(player1, newStr[2]);
                     case "player" -> player1.levelUp(player1, newStr[2]);
+                    default -> {
+                        try {
+                            throw new userInputExcepetion();
+                        } catch (userInputExcepetion e) {
+                            System.err.println(e.getMessage());
+                        }
+                    }
                 }
             }
             case "open" -> {
@@ -105,6 +112,13 @@ public abstract class Menu {
                     case "room" -> {
                         player1.getCurrentRoom().getInfo().printInfo();
                         player1.getCurrentRoom().printInfo();
+                    }
+                    default -> {
+                        try {
+                            throw new userInputExcepetion();
+                        } catch (userInputExcepetion e) {
+                            System.err.println(e.getMessage());
+                        }
                     }
                 }
             }

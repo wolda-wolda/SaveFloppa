@@ -74,10 +74,10 @@ public class Player extends Entity {
      * @param string
      * @return
      */
-    public Food depositFood(String string) {
+    public Item depositFood(String string) {
         int i = inventory.findItem(string);
         if (i != -1) {
-            return (Food) inventory.removeItem(i);
+            return inventory.removeItem(i);
         }
         return null;
     }

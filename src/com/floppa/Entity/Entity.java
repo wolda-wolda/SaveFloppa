@@ -1,7 +1,9 @@
 package com.floppa.Entity;
 
 import com.floppa.Info;
+import com.floppa.Items.Food;
 import com.floppa.Menu.SoundPlayer;
+import com.floppa.exception.notFoodException;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -98,17 +100,25 @@ public class Entity {
      */
     public void levelUp(Player player, String part3) {
         var tmp = player.depositFood(part3);
-        if (tmp != null) {
+        if (tmp.getClass() == Food.class) {
             if (this.hp < 100) {
-                this.hp += tmp.getHp();
+                this.hp += ((Food) tmp).getHp();
                 if (this.hp > 100) {
                     this.hp = 100;
                 }
                 System.out.println("you regained your HP to: " + this.hp);
             }
             System.out.println("You ate: " + tmp.getInfo());
-            this.curXP += tmp.getStrength();
+            this.curXP += ((Food) tmp).getStrength();
             checkCurrentXP();
+        } else {
+            try {
+                throw new notFoodException();
+            } catch (notFoodException e) {
+                System.err.println(e.getMessage());
+            }
+            System.out.println("Item has been readded to your inventory");
+            player.getInventory().addItem(tmp);
         }
     }
 

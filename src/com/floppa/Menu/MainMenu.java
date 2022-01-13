@@ -1,5 +1,7 @@
 package com.floppa.Menu;
 
+import com.floppa.exception.userInputExcepetion;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -7,6 +9,7 @@ import javax.sound.sampled.LineUnavailableException;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -30,18 +33,28 @@ public abstract class MainMenu {
         }
         soundPlayer.playSound(clip, "/src/Config/winner.wav", true);
 
-        System.out.println();
-        System.out.println("##################");
-        System.out.println("Continue");
-        System.out.println("Load Game");
-        System.out.println("Save Game");
-        System.out.println("Settings");
-        System.out.println("Exit");
-        System.out.println("##################");
-        System.out.println("Enter command:");
-        String ret = scanner.nextLine().toLowerCase();
-        System.out.println();
-
+        String ret = "";
+        int i = 0;
+        while (!Objects.equals(ret, "continue") && !Objects.equals(ret, "load") && !Objects.equals(ret, "save") && !Objects.equals(ret, "exit")) {
+            if (i > 0) {
+                try {
+                    throw new userInputExcepetion();
+                } catch (userInputExcepetion e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+            System.out.println();
+            System.out.println("##################");
+            System.out.println("Continue");
+            System.out.println("Load Game");
+            System.out.println("Save Game");
+            System.out.println("Exit");
+            System.out.println("##################");
+            System.out.println("Enter command:");
+            ret = scanner.nextLine().toLowerCase();
+            System.out.println();
+            i++;
+        }
         if (clip != null) {
             clip.stop();
         }
