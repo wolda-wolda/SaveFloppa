@@ -82,5 +82,6 @@ public class Floppa extends Entity {
         this.starving = false;
         this.needFoodNextRound = false;
         this.dead = false;
+        this.starvingRounds = 0;
     }
 }
