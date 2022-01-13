@@ -87,7 +87,7 @@ public class Entity {
         System.out.println(" #############################");
         try {
             Clip clip = AudioSystem.getClip();
-            soundPlayer.playSound(clip, "/src/Config/levelup.wav", false);
+            soundPlayer.playSound(clip, "/Sound/levelup.wav", false);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }

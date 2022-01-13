@@ -125,7 +125,7 @@ public class Player extends Entity {
                             System.out.println("Your Floppa died: GAME OVER");
                             try {
                                 Clip clip = AudioSystem.getClip();
-                                soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                soundPlayer.playSound(clip, "/Sound/gameOver.wav", false);
                                 sleep(3000);
                             } catch (LineUnavailableException | InterruptedException e) {
                                 e.printStackTrace();
@@ -147,7 +147,7 @@ public class Player extends Entity {
                                     System.out.println("You died so bad! Game Over");
                                     try {
                                         Clip clip = AudioSystem.getClip();
-                                        soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                        soundPlayer.playSound(clip, "/Sound/gameOver.wav", false);
                                         sleep(3000);
                                     } catch (LineUnavailableException | InterruptedException e) {
                                         e.printStackTrace();
@@ -177,10 +177,10 @@ public class Player extends Entity {
                                         "Congrats you won!!");
                                 try {
                                     Clip clip = AudioSystem.getClip();
-                                    soundPlayer.playSound(clip, "/src/Config/congrats.wav", false);
+                                    soundPlayer.playSound(clip, "/Sound/congrats.wav", false);
                                     sleep(7000);
                                     clip.close();
-                                    soundPlayer.playSound(clip, "/src/Config/winner.wav", true);
+                                    soundPlayer.playSound(clip, "/Sound/winner.wav", true);
                                 } catch (LineUnavailableException | InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -198,7 +198,7 @@ public class Player extends Entity {
                                         "You didn`t stand a chance a died\n");
                                 try {
                                     Clip clip = AudioSystem.getClip();
-                                    soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                                    soundPlayer.playSound(clip, "/Sound/gameOver.wav", false);
                                     sleep(3000);
                                 } catch (LineUnavailableException | InterruptedException e) {
                                     e.printStackTrace();

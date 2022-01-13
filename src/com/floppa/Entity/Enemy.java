@@ -47,7 +47,7 @@ public class Enemy extends Entity {
             System.out.println("You died! Game over!! You should level up or heal yourself to get past this level");
             try {
                 Clip clip = AudioSystem.getClip();
-                soundPlayer.playSound(clip, "/src/Config/gameOver.wav", false);
+                soundPlayer.playSound(clip, "/Sound/gameOver.wav", false);
                 sleep(2000);
             } catch (LineUnavailableException | InterruptedException e) {
                 e.printStackTrace();

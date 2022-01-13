@@ -31,7 +31,7 @@ public abstract class MainMenu {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        soundPlayer.playSound(clip, "/src/Config/winner.wav", true);
+        soundPlayer.playSound(clip, "/Sound/winner.wav", true);
 
         String ret = "";
         int i = 0;
