@@ -1,6 +1,12 @@
 package com.floppa.Menu;
 
+/**
+ * Class for adding Credits
+ */
 public class Credits {
+    /**
+     * Prints Credits
+     */
     public static void Credit() {
         System.out.println("Credits\n" +
                 "\n" +

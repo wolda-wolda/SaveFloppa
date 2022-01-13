@@ -42,6 +42,10 @@ public class Info {
         return this.description;
     }
 
+    /**
+     * Set the Node's Name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

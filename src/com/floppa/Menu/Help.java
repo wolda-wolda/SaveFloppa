@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Class for getting help with the current Situation they are in
+ * Class for getting help with the current Situation a Player is in
  */
 public abstract class Help {
 

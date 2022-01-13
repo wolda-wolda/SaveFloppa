@@ -179,6 +179,9 @@ public class Entity {
         return info;
     }
 
+    /**
+     * Print the Entity's most important Info
+     */
     public void printInfo() {
         System.out.println("Your HP: " + this.getHp() + " your level: " + this.getCurrentLevel());
     }

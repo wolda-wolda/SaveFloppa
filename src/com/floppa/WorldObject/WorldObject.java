@@ -46,6 +46,10 @@ public class WorldObject implements Interaction {
         return null;
     }
 
+    /**
+     * Unlock the WorldObject with a key or another Item
+     * @param key
+     */
     @Override
     public void unlock(Item key) {
     }

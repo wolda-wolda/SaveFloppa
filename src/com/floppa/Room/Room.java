@@ -312,14 +312,24 @@ public class Room implements Interaction {
         }
     }
 
+    /**
+     * Print Instructions, helping the Player in the current Room
+     */
     public void printInstruction() {
         System.out.println(instruction);
     }
 
+    /**
+     * Get the unlockable Status
+     * @return
+     */
     public boolean isUnlockable() {
         return unlockable;
     }
 
+    /**
+     * Set the unlockable Status
+     */
     public void setUnlockable() {
         this.unlockable = !unlockable;
     }

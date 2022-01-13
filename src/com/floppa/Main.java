@@ -71,7 +71,7 @@ public class Main {
         int enemies = 5, level = 1;
         room.addRoom(new Pos(5, 3), new Room(new Info("SecondRoom", "Room with chest with Floppas things in it"), true, "\nAfter entering this room you found Floppa again.\nIn this room is a chaos. You picked up the empty basket.\nAdd Big Floppa’s food and toys in it.\nDon't forget his flowers because Floppa loves flowers.\nIt's a gift for the love of his life\n", true));
         room.addRoom(new Pos(0, 3), new Room(new Info("ThirdRoom", "Room with a rare golden key"), false, "\nBig Floppa didn’t eat since a few days. Feed him. With the meat you found earlier\n", false));
-        room.addRoom(new Pos(3, 5), new Room(new Info("FourthRoom", "Endboss room"), true, "\nAfter entering the last room, you finally see the villain Pax(Bri ish 'person' floppa hates them) who stole Floppa's flopps.\nFight him!\n", false);
+        room.addRoom(new Pos(3, 5), new Room(new Info("FourthRoom", "Endboss room"), true, "\nAfter entering the last room, you finally see the villain Pax(Bri ish 'person' floppa hates them) who stole Floppa's flopps.\nFight him!\n", false));
         String[] tmp = {"apple", "apple", "key"};
         room.fill(tmp);
 

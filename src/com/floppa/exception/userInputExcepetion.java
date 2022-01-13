@@ -1,5 +1,8 @@
 package com.floppa.exception;
 
+/**
+ * Exception for handling unrecognized Inputs
+ */
 public class userInputExcepetion extends Exception {
     @Override
     public String getMessage() {

@@ -10,6 +10,9 @@ import javax.sound.sampled.LineUnavailableException;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Class implementing Enemies and theActions needed for them to work
+ */
 public class Enemy extends Entity {
 
     /**

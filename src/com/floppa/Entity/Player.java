@@ -336,10 +336,18 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Set the starting Room
+     * @param room
+     */
     public void setStartRoom(Room room) {
         this.startRoom = room;
     }
 
+    /**
+     * Get the starting Room
+     * @return
+     */
     public Room getStartRoom() {
         return this.startRoom;
     }
