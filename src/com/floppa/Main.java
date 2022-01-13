@@ -43,11 +43,11 @@ public class Main {
                 "You tried pushing the door a few times but weren’t successful at it.\n" +
                 "Then you took some steps back and ran into the door.\n" +
                 "But someone had other plans for you. The wooden door got opened from the inside\n");
-        /*try {
+        try {
             sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         System.out.println("You slowly looked up and got shocked. He saw a big floopa, but, but something is missing you thought.\n" +
                 "You examined the floppa carefully and noticed his flopps(funny ears) were missing. \n" +
                 "You saw a letter attached on floppas fell. He carefully detached it. \n" +
